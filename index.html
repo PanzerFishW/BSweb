@@ -22,6 +22,10 @@
       background: #F7F0E6;
       color: #494949;
       line-height: 1.4;
+      background-image: url('images/background.svg');
+      background-repeat: no-repeat;
+      background-position: center top;
+      background-size: cover;
     }
 
     .container {
@@ -99,7 +103,7 @@
       background: #6f6a4b;
     }
 
-    /* ===== HEADER (Обновлено под ваш скриншот) ===== */
+    /* ===== HEADER ===== */
     .header {
       position: absolute;
       top: 32px;
@@ -117,7 +121,6 @@
       z-index: 10;
     }
 
-    /* Логотип с иконкой и текстом в две строки */
     .header .logo {
       display: flex;
       align-items: flex-end;
@@ -135,7 +138,7 @@
     .header .logo-text {
       display: flex;
       flex-direction: column;
-      font-family: 'Playfair Display', serif; /* Замена для Etude Noire */
+      font-family: 'Playfair Display', serif;
       font-size: 21px;
       line-height: 0.9;
       letter-spacing: 0.5px;
@@ -147,7 +150,6 @@
       margin-bottom: 2px;
     }
 
-    /* Навигация */
     .header nav {
       display: flex;
       align-items: center;
@@ -161,7 +163,6 @@
       font-weight: 400;
     }
 
-    /* Правая часть (лапа, телефон, кнопка) */
     .header .actions {
       display: flex;
       align-items: center;
@@ -210,7 +211,7 @@
       position: absolute;
       inset: 0;
       background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-        url('https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=1600&q=80') center/cover no-repeat;
+        url('images/hero/hero-background.jpg') center/cover no-repeat;
       filter: blur(1.5px);
       z-index: 0;
     }
@@ -284,23 +285,116 @@
       min-width: 200px;
     }
 
-    /* ===== Остальные секции и адаптивность ===== */
+    /* ===== РАЗДЕЛИТЕЛЬ ===== */
     .divider { height: 20px; background: linear-gradient(90deg, #351B0D 0%, #9B5026 43.75%, #683619 100%); transform: scaleX(-1); }
-    
-    .about { padding: 80px 0; display: flex; flex-wrap: wrap; gap: 60px; align-items: center; }
-    .about-image { flex: 1 1 400px; height: 600px; background: url('https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&q=80') center/cover no-repeat; border-radius: 0 0 20px 0; min-height: 400px; }
-    .about-content { flex: 1 1 500px; }
-    .about-title { font-family: 'Playfair Display', serif; font-size: 90px; line-height: 95px; color: var(--gold); margin-bottom: 40px; }
-    .about-text { font-size: 20px; line-height: 24px; margin-bottom: 24px; }
-    .about-actions { display: flex; gap: 32px; flex-wrap: wrap; }
 
-    .quote { padding: 60px 0; background: var(--bg-beige); }
-    .quote-inner { max-width: 1340px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 40px; align-items: center; }
-    .quote-text { flex: 1 1 500px; font-size: 20px; line-height: 24px; color: var(--text-dark); padding: 0 20px; }
-    .quote-text p { margin-bottom: 32px; }
-    .quote-text .quote-mark { font-size: 48px; line-height: 1; color: var(--gold); display: block; margin-bottom: 10px; }
-    .quote-image { flex: 1 1 400px; height: 600px; background: url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800&q=80') center/cover no-repeat; border-radius: 20px 0 0 20px; }
+    /* ===== СЕКЦИЯ "О НАС" ===== */
+    .about {
+      display: flex;
+      align-items: flex-start;
+      padding: 0;
+      width: 100%;
+    }
 
+    .about-image {
+      width: 700px;
+      height: 1000px;
+      flex-shrink: 0;
+      background: url('images/about_us/about-us2.png') center/cover no-repeat;
+      border-radius: 0 0 20px 0;
+      margin-top: -20px;
+      margin-left: 0;
+    }
+
+    .about-content {
+      flex: 1;
+      padding: 80px 120px 0 100px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .about-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 90px;
+      line-height: 95px;
+      color: var(--gold);
+    }
+
+    .about-text {
+      font-size: 28px;
+      line-height: 34px;
+      color: var(--text-dark);
+    }
+
+    .about-actions {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    /* ===== СЕКЦИЯ "ЦИТАТА" (исправленная) ===== */
+    .quote {
+      padding: 60px 0;
+      background: var(--bg-beige);
+      width: 100%;
+    }
+
+    .quote-inner {
+      display: flex;
+      align-items: stretch;
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .quote-text {
+      flex: 1;
+      padding: 40px 60px 40px 120px; /* Левый отступ, как в блоке О нас */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .quote-text .quote-mark {
+      font-family: 'Playfair Display', serif;
+      font-size: 100px;
+      line-height: 1;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .quote-text p {
+      font-size: 28px;
+      line-height: 34px;
+      color: var(--text-dark);
+      margin-bottom: 32px;
+    }
+
+    .quote-text p:last-of-type {
+      margin-bottom: 10px;
+    }
+
+    .quote-text .quote-mark-end {
+      font-family: 'Playfair Display', serif;
+      font-size: 100px;
+      line-height: 1;
+      color: var(--gold);
+      display: block;
+      align-self: flex-end; /* Прижимает закрывающую кавычку вправо, как в макете */
+    }
+
+    .quote-image {
+      width: 760px;
+      height: 760px;
+      flex-shrink: 0;
+      background: url('images/about_us/about-us.png') center/cover no-repeat;
+      border-radius: 20px 0 0 20px;
+    }
+
+    /* ===== ОСТАЛЬНЫЕ СЕКЦИИ ===== */
     .slogan { text-align: center; padding: 60px 0 80px; }
     .slogan h2 { font-family: 'Playfair Display', serif; font-size: 44px; line-height: 110%; color: var(--text-dark); max-width: 734px; margin: 0 auto; }
 
@@ -378,6 +472,7 @@
     .footer-bottom .legal a { color: var(--text-dark); text-decoration: none; }
     .footer-bottom .payments { display: flex; gap: 10px; align-items: center; }
 
+    /* ===== Адаптивность ===== */
     @media (max-width: 1024px) {
       .header { flex-wrap: wrap; gap: 10px; border-radius: 20px; padding: 15px 20px; }
       .header nav { order: 3; width: 100%; justify-content: center; flex-wrap: wrap; gap: 15px; }
@@ -389,6 +484,37 @@
       .gallery-header h2 { font-size: 50px; line-height: 55px; }
       .faq h2 { font-size: 50px; line-height: 55px; }
       .houses-grid { grid-template-columns: 1fr; }
+
+      .about {
+        flex-direction: column;
+        padding: 40px 20px;
+      }
+      .about-image {
+        width: 100%;
+        height: 400px;
+        margin-top: 0;
+        border-radius: 0 0 20px 0;
+      }
+      .about-content {
+        padding: 40px 0 0 0;
+        width: 100%;
+      }
+
+      .quote-inner {
+        flex-direction: column;
+      }
+      .quote-text {
+        padding: 40px 20px;
+        width: 100%;
+      }
+      .quote-text .quote-mark-end {
+        align-self: flex-end;
+      }
+      .quote-image {
+        width: 100%;
+        height: 400px;
+        border-radius: 0 0 0 20px; /* На мобильных скругление слева снизу */
+      }
     }
 
     @media (max-width: 600px) {
@@ -402,15 +528,16 @@
       .quote-image { height: 300px; }
       .footer-inner { flex-direction: column; gap: 40px; }
       .footer-bottom { flex-direction: column; gap: 20px; text-align: center; }
+      .about-actions { flex-direction: column; width: 100%; }
+      .about-actions .btn { width: 100%; justify-content: center; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ===== ОБНОВЛЁННЫЙ HEADER ===== -->
+  <!-- ===== HEADER ===== -->
   <header class="header">
     <a href="#" class="logo">
-      <!-- Ваш SVG логотип (вставлен полностью) -->
       <svg width="47" height="47" viewBox="0 0 47 47" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g clip-path="url(#clip0_2102_3113)">
           <path d="M20.6016 0.982422C32.6936 -0.496011 43.8335 7.76958 45.7266 19.6631C46.4423 24.1612 45.7965 28.4867 43.8613 32.623C43.7697 32.8198 43.6608 32.9786 43.5146 33.1025C43.3684 33.2264 43.1902 33.3108 42.9668 33.3691C38.5914 34.5042 34.3902 34.0114 30.3232 32.1328C29.9558 31.9632 29.5827 31.8048 29.208 31.6455C28.8337 31.4864 28.4581 31.3257 28.0879 31.1533C24.9196 29.6776 21.7906 29.7592 18.5996 31.1807C16.615 32.064 14.5733 32.8714 12.4863 33.4834C9.53511 34.3484 6.54379 34.0545 3.6123 33.292C3.4748 33.2564 3.3459 33.1598 3.24121 33.0508C3.16161 32.9678 3.09051 32.8718 3.03516 32.7773L2.98535 32.6836C1.52809 29.6596 0.789636 26.472 0.810547 23.1182C0.801136 11.8839 9.31452 2.36258 20.6016 0.982422ZM43.8848 18.5303C40.4671 3.74818 22.6612 -2.53066 10.5039 6.74902C2.94101 12.5224 0.288539 22.785 4.13574 31.415C4.17945 31.513 4.23979 31.627 4.30762 31.7197C4.37924 31.8176 4.44494 31.871 4.49414 31.8818C5.41634 32.0868 6.3508 32.2321 7.31934 32.4014V25.5479C6.5955 26.3892 5.92677 27.1644 5.23438 27.9688L5.16992 28.0439L5.09473 27.9805C4.73072 27.6742 4.40672 27.403 4.0498 27.1025L3.97363 27.0381L4.03809 26.9609C5.06019 25.7625 6.04092 24.5778 7.06543 23.4346C7.23937 23.2403 7.31972 23.0514 7.34766 22.8486C7.36845 22.6973 7.35991 22.5353 7.33496 22.3516C6.81841 22.9488 6.34769 23.4933 5.85254 24.0674L5.78906 24.1416L5.71387 24.0791C5.34532 23.7733 5.022 23.5065 4.66309 23.209L4.58496 23.1445L4.65039 23.0674C5.43721 22.1462 6.17384 21.225 6.97656 20.3672C7.17782 20.1519 7.28618 19.9369 7.33301 19.7041C7.36942 19.5229 7.36884 19.3272 7.34277 19.1064C7.08834 19.3813 6.85952 19.6289 6.61719 19.8906L6.55273 19.9609L6.47949 19.8994C6.13352 19.6086 5.81082 19.3389 5.44629 19.0322L5.36914 18.9668L5.43457 18.8906C6.33187 17.8417 7.19138 16.8381 8.08984 15.7881L8.16602 15.6992L8.24219 15.7881C9.15551 16.8574 10.0163 17.8669 10.8965 18.8975L10.9619 18.9746L10.8838 19.0391C10.5042 19.3545 10.1839 19.621 9.83984 19.9062L9.76562 19.9678L9.70117 19.8955C9.44828 19.6109 9.23857 19.3801 8.99219 19.1055C8.95862 19.3412 8.95949 19.5412 8.99902 19.7227C9.04897 19.9516 9.16243 20.1594 9.36328 20.375C10.1622 21.2315 10.8952 22.1514 11.6758 23.0664L11.7422 23.1436L11.6641 23.208C11.2958 23.5134 10.9773 23.7786 10.6162 24.0781L10.54 24.1406L10.4766 24.0664C9.97073 23.4801 9.49171 22.9249 8.98242 22.334C8.94271 22.5537 8.94769 22.7409 8.99023 22.9102C9.04464 23.1264 9.16253 23.3223 9.34277 23.5234C10.3391 24.6376 11.2917 25.7905 12.2881 26.96L12.3535 27.0361L12.2773 27.1016C11.9162 27.4073 11.5947 27.6788 11.2334 27.9834L11.1582 28.0479L11.0938 27.9727C10.3983 27.1618 9.72349 26.3757 8.98633 25.5176V32.3691C9.00866 32.3735 9.02913 32.3775 9.04688 32.3809C9.08829 32.3886 9.11934 32.393 9.14746 32.3926C10.9306 32.3686 12.6329 31.9424 14.2842 31.2988L14.3184 31.2783C14.3311 31.2682 14.3452 31.2543 14.3604 31.2363C14.39 31.2012 14.4188 31.1549 14.4443 31.1025C14.4962 30.9961 14.5278 30.8773 14.5283 30.793C14.5387 29.5345 14.5409 27.1045 14.5391 24.6748L14.5234 18.5566C14.5222 18.3606 14.5646 18.1879 14.666 18.0625C14.7701 17.9338 14.9243 17.8692 15.1123 17.8691L23.0254 17.8662L31.5801 17.8691C31.7773 17.868 31.9477 17.9139 32.0664 18.0361C32.1845 18.1579 32.2324 18.3365 32.2305 18.5576C32.2213 19.7957 32.2338 22.22 32.2461 24.6455C32.2583 27.0706 32.2712 29.4973 32.2607 30.7363C32.259 30.9437 32.2895 31.0764 32.3564 31.1738C32.4234 31.2712 32.5375 31.3488 32.7373 31.4219C35.7531 32.5279 38.8213 32.6733 41.9531 31.999C42.154 31.9557 42.3006 31.8862 42.415 31.7871C42.5299 31.6877 42.6198 31.5524 42.6992 31.3662C44.4654 27.2078 44.9009 22.9237 43.8848 18.5303ZM16.459 19.3818C16.326 19.3813 16.2319 19.42 16.1709 19.4854C16.1092 19.5515 16.0671 19.6597 16.0693 19.8242L16.1055 24.251C16.1171 26.0764 16.126 27.9022 16.126 28.6777V30.6797C18.5531 29.2488 20.9666 28.5289 23.375 28.5215C25.8221 28.5139 28.256 29.241 30.6846 30.6895C30.6933 28.3289 30.7085 21.9883 30.6846 19.8262V19.8252C30.6845 19.6513 30.6537 19.5455 30.6006 19.4824C30.5508 19.4234 30.4627 19.3818 30.2939 19.3818H16.459Z" fill="#494949" stroke="#494949" stroke-width="0.2"/>
@@ -438,7 +565,6 @@
     </nav>
 
     <div class="actions">
-      <!-- Ваш SVG иконки лапы (вставлен полностью) -->
       <svg class="paw-icon" width="30" height="28" viewBox="0 0 30 28" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g clip-path="url(#clip0_2102_3126)">
           <path d="M16 6.47324C16 4.13333 17.318 0 19.5268 0C21.7357 0 24 3.97295 24 6.47324C24 8.97354 22.2093 11 20 11C17.7907 11 16 8.97311 16 6.47324Z" fill="#494949"/>
@@ -457,7 +583,7 @@
     </div>
   </header>
 
-  <!-- ===== ОСТАЛЬНОЙ КОНТЕНТ ===== -->
+  <!-- ===== HERO ===== -->
   <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-content">
@@ -485,7 +611,8 @@
 
   <div class="divider"></div>
 
-  <section class="about container">
+  <!-- ===== СЕКЦИЯ "О НАС" ===== -->
+  <section class="about">
     <div class="about-image"></div>
     <div class="about-content">
       <h2 class="about-title">О нас</h2>
@@ -502,18 +629,27 @@
     </div>
   </section>
 
+  <!-- ===== ИСПРАВЛЕННАЯ СЕКЦИЯ "ЦИТАТА" ===== -->
   <section class="quote">
     <div class="quote-inner">
       <div class="quote-text">
         <span class="quote-mark">“</span>
-        <p>Проект вырос из личной истории и желания делиться. В стенах нашего семейного дома всегда было много друзей, гостеприимства, длинных разговоров и тёплых вечеров. Со временем нас в семье становилось всё больше, как и тех, с кем хотелось разделить эту атмосферу и состояние.</p>
-        <p>Так появился “Best Season” — место, куда можно приехать с тем же чувством, что тебе здесь всегда рады и ждут, где светло, спокойно и по-настоящему хорошо.</p>
-        <p>У нас нет любимого времени года. Мы уверены, что каждый сезон по-своему прекрасный, а с нужными людьми любая поездка может стать незабываемой.</p>
+        <p>
+          Проект вырос из личной истории и желания делиться. В стенах нашего семейного дома всегда было много друзей, гостеприимства, длинных разговоров и тёплых вечеров. Со временем нас в семье становилось всё больше, как и тех, с кем хотелось разделить эту атмосферу и состояние.
+        </p>
+        <p>
+          Так появился “Best Season” — место, куда можно приехать с тем же чувством, что тебе здесь всегда рады и ждут, где светло, спокойно и по-настоящему хорошо.
+        </p>
+        <p>
+          У нас нет любимого времени года. Мы уверены, что каждый сезон по-своему прекрасный, а с нужными людьми любая поездка может стать незабываемой.
+        </p>
+        <span class="quote-mark-end">”</span>
       </div>
       <div class="quote-image"></div>
     </div>
   </section>
 
+  <!-- ===== ОСТАЛЬНЫЕ СЕКЦИИ БЕЗ ИЗМЕНЕНИЙ ===== -->
   <section class="slogan container">
     <h2>Не ждите подходящего момента, ваш лучший сезон уже начался</h2>
   </section>
@@ -522,7 +658,7 @@
     <h2 class="section-title">Наши домики</h2>
     <div class="houses-grid">
       <div class="house-card">
-        <img src="https://images.unsplash.com/photo-1510798831971-661eb04b3739?w=800&q=80" alt="Первый домик" />
+        <img src="images/houses/house-1.jpg" alt="Первый домик" />
         <div class="overlay"></div>
         <div class="content">
           <div class="dots"><span></span><span></span><span></span></div>
@@ -534,7 +670,7 @@
         <div class="price-tag">от 8 000 ₽<br>за ночь</div>
       </div>
       <div class="house-card">
-        <img src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=800&q=80" alt="Второй домик" />
+        <img src="images/houses/house-2.png" alt="Второй домик" />
         <div class="overlay"></div>
         <div class="content">
           <div class="dots"><span></span><span></span><span></span></div>
@@ -546,7 +682,7 @@
         <div class="price-tag">от 6 000 ₽<br>за ночь</div>
       </div>
       <div class="house-card">
-        <img src="https://images.unsplash.com/photo-1505693314120-0d443867891c?w=800&q=80" alt="Третий домик" />
+        <img src="images/houses/house-3.png" alt="Третий домик" />
         <div class="overlay"></div>
         <div class="content">
           <div class="dots"><span></span><span></span><span></span></div>
@@ -558,7 +694,7 @@
         <div class="price-tag">от 6 000 ₽<br>за ночь</div>
       </div>
       <div class="house-card">
-        <img src="https://images.unsplash.com/photo-1510798831971-661eb04b3739?w=800&q=80" alt="Четвертый домик" />
+        <img src="images/houses/house-4.png" alt="Четвертый домик" />
         <div class="overlay"></div>
         <div class="content">
           <div class="dots"><span></span><span></span><span></span></div>
@@ -580,15 +716,15 @@
       </div>
     </div>
     <div class="territory-grid">
-      <div class="territory-item"><img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=400&q=80" /><div class="gradient"></div><span>Батут и детская площадка</span></div>
-      <div class="territory-item"><img src="https://images.unsplash.com/photo-1512418490979-92798cec1380?w=400&q=80" /><div class="gradient"></div><span>Костровая зона</span></div>
-      <div class="territory-item"><img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=400&q=80" /><div class="gradient"></div><span>Спортивные игры</span></div>
-      <div class="territory-item"><img src="https://images.unsplash.com/photo-1581578731548-c3bf1c7d2d76?w=400&q=80" /><div class="gradient"></div><span>Русская баня</span></div>
-      <div class="territory-item"><img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=400&q=80" /><div class="gradient"></div><span>Финская сауна</span></div>
-      <div class="territory-item"><img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=400&q=80" /><div class="gradient"></div><span>Река “Скнижка”</span></div>
-      <div class="territory-item"><img src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=400&q=80" /><div class="gradient"></div><span>Фотосессии</span></div>
-      <div class="territory-item"><img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=400&q=80" /><div class="gradient"></div><span>Мастер-классы</span></div>
-      <div class="territory-item"><img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=400&q=80" /><div class="gradient"></div><span>Контактная ферма</span></div>
+      <div class="territory-item"><img src="images/territory/territory-playground.png" /><div class="gradient"></div><span>Батут и детская площадка</span></div>
+      <div class="territory-item"><img src="images/territory/territory-bonfire.png" /><div class="gradient"></div><span>Костровая зона</span></div>
+      <div class="territory-item"><img src="images/territory/territory-sports.png" /><div class="gradient"></div><span>Спортивные игры</span></div>
+      <div class="territory-item"><img src="images/territory/territory-banya.png" /><div class="gradient"></div><span>Русская баня</span></div>
+      <div class="territory-item"><img src="images/territory/territory-sauna.jpg" /><div class="gradient"></div><span>Финская сауна</span></div>
+      <div class="territory-item"><img src="images/territory/territory-river.png" /><div class="gradient"></div><span>Река “Скнижка”</span></div>
+      <div class="territory-item"><img src="images/territory/territory-photo.png" /><div class="gradient"></div><span>Фотосессии</span></div>
+      <div class="territory-item"><img src="images/territory/territory-masterclass.png" /><div class="gradient"></div><span>Мастер-классы</span></div>
+      <div class="territory-item"><img src="images/territory/territory-farm.png" /><div class="gradient"></div><span>Контактная ферма</span></div>
       <div class="territory-item more"><span>Больше развлечений и услуг в глэмпинге</span><div class="arrow">→</div></div>
     </div>
   </section>
@@ -596,9 +732,9 @@
   <section class="nearby container">
     <h2 class="section-title">Интересное рядом</h2>
     <div class="nearby-grid">
-      <div class="nearby-card"><div class="number">01</div><h3>Усадьба "Поленово"</h3><img class="image" src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400&q=80" /><p>В 3 км от нас невероятной красоты усадьба русского художника Василия Поленова, которая по праву стала достоянием Тульского края.</p><a href="#" class="btn btn-light">Подробнее</a></div>
-      <div class="nearby-card gold"><div class="number">02</div><h3>деревня Ф. Конюхова</h3><img class="image" src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=400&q=80" /><p>В 6 км от нас Арт-проект всемирно известного путешественника Федора Конюхова — необычное пространство для вдохновения.</p><a href="#" class="btn btn-light">Подробнее</a></div>
-      <div class="nearby-card"><div class="number">03</div><h3>деревня “Бёхово”</h3><img class="image" src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=400&q=80" /><p>В 5 км от нас находится старинная и живописная деревня Бёхово, которая в 2021 г. вошла в топ лучших деревень мира по версии ООН.</p><a href="#" class="btn btn-light">Подробнее</a></div>
+      <div class="nearby-card"><div class="number">01</div><h3>Усадьба "Поленово"</h3><img class="image" src="images/intresting_nearby/nearby-polenovo.png" /><p>В 3 км от нас невероятной красоты усадьба русского художника Василия Поленова, которая по праву стала достоянием Тульского края.</p><a href="#" class="btn btn-light">Подробнее</a></div>
+      <div class="nearby-card gold"><div class="number">02</div><h3>деревня Ф. Конюхова</h3><img class="image" src="images/intresting_nearby/nearby-konyukhov.png" /><p>В 6 км от нас Арт-проект всемирно известного путешественника Федора Конюхова — необычное пространство для вдохновения.</p><a href="#" class="btn btn-light">Подробнее</a></div>
+      <div class="nearby-card"><div class="number">03</div><h3>деревня “Бёхово”</h3><img class="image" src="images/intresting_nearby/nearby-bekhovo.png" /><p>В 5 км от нас находится старинная и живописная деревня Бёхово, которая в 2021 г. вошла в топ лучших деревень мира по версии ООН.</p><a href="#" class="btn btn-light">Подробнее</a></div>
     </div>
     <div class="nearby-more"><a href="#" class="btn btn-outline">Больше интересных мест рядом <span style="display:inline-block; border:1px solid #494949; border-radius:2px; padding:2px 6px; margin-left:10px;">→</span></a></div>
   </section>
@@ -606,12 +742,12 @@
   <section class="gallery container">
     <div class="gallery-header"><h2>Фотогалерея</h2><p>Копилку ваших самых счастливых дней может пополнить тот, который состоит из простых вещей: наблюдения за птицами, неторопливой прогулкой, знакомства с местными жителями нашей фермы, вечернего разговора за чашкой чая.</p></div>
     <div class="gallery-grid">
-      <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&q=80" />
-      <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=400&q=80" />
-      <img src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=400&q=80" />
-      <img src="https://images.unsplash.com/photo-1505693314120-0d443867891c?w=400&q=80" />
-      <img src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=400&q=80" />
-      <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=400&q=80" />
+      <img src="images/photogallery/gallery-1.png" />
+      <img src="images/photogallery/gallery-2.png" />
+      <img src="images/photogallery/gallery-3.png" />
+      <img src="images/photogallery/gallery-4.png" />
+      <img src="images/photogallery/gallery-5.png" />
+      <img src="images/photogallery/gallery-6.png" />
     </div>
     <div class="gallery-more"><a href="#" class="btn btn-outline">Подробнее</a></div>
   </section>
