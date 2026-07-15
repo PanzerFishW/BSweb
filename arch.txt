@@ -1,18 +1,18 @@
 ================================================================================
 🏗️  АРХИТЕКТУРА ПРОЕКТА
 ================================================================================
-📅 Сгенерировано: 2026-06-30 16:11:03
+📅 Сгенерировано: 2026-07-15 10:19:33
 📁 Корневая директория: C:\Users\GAME\Documents\GitHub\BSweb
 
 
 📊 СТАТИСТИКА:
-   📁 Папок: 10
+   📁 Папок: 15
    📄 Файлов: 63
-   📦 Всего: 73 элементов
+   📦 Всего: 78 элементов
 
 └── (Папка) 
     ├── (Файл) arch.py (4.8 KB)
-    ├── (Файл) arch.txt (4.5 KB)
+    ├── (Файл) arch.txt (4.6 KB)
     ├── (Папка) backgrounds
     │   ├── (Файл) 1.svg (693.8 KB)
     │   ├── (Файл) 2.svg (446.7 KB)
@@ -22,64 +22,69 @@
     │   ├── (Файл) 6.svg (373.2 KB)
     │   ├── (Файл) 7.svg (847.9 KB)
     │   └── (Файл) 8.svg (765.8 KB)
-    ├── (Папка) fonts
-    │   ├── (Файл) Etude Noire Bold.ttf (65.7 KB)
-    │   ├── (Файл) Etude Noire Light.ttf (63.2 KB)
-    │   ├── (Файл) Etude Noire Medium.ttf (65.6 KB)
-    │   └── (Файл) Etude Noire Regular.ttf (62.6 KB)
-    ├── (Файл) houses.html (25.7 KB)
-    ├── (Папка) images
-    │   ├── (Папка) about_us
-    │   │   ├── (Файл) about-us.png (1.3 MB)
-    │   │   └── (Файл) about-us2.png (3.1 MB)
-    │   ├── (Папка) hero
-    │   │   └── (Файл) hero-background.jpg (12.2 MB)
-    │   ├── (Папка) houses
-    │   │   ├── (Файл) house-1.jpg (232.6 KB)
-    │   │   ├── (Файл) house-2.png (3.7 MB)
-    │   │   ├── (Файл) house-3.png (5.4 MB)
-    │   │   ├── (Файл) house-4.png (4.9 MB)
-    │   │   ├── (Файл) house-5.png (3.8 MB)
-    │   │   └── (Файл) house-6.png (4.0 MB)
-    │   ├── (Папка) intresting_nearby
-    │   │   ├── (Файл) nearby-bekhovo.png (3.8 MB)
-    │   │   ├── (Файл) nearby-bekhovo2.png (1.1 MB)
-    │   │   ├── (Файл) nearby-konyukhov.png (1.3 MB)
-    │   │   ├── (Файл) nearby-polenovo.png (1.7 MB)
-    │   │   └── (Файл) nearby-polenovo2.png (815.7 KB)
-    │   ├── (Файл) mc.png (1.3 KB)
-    │   ├── (Файл) mir.png (1.3 KB)
-    │   ├── (Папка) photogallery
-    │   │   ├── (Файл) gallery-1.png (3.8 MB)
-    │   │   ├── (Файл) gallery-10.png (1.2 MB)
-    │   │   ├── (Файл) gallery-11.png (1.5 MB)
-    │   │   ├── (Файл) gallery-12.png (569.2 KB)
-    │   │   ├── (Файл) gallery-2.png (2.5 MB)
-    │   │   ├── (Файл) gallery-3.png (2.6 MB)
-    │   │   ├── (Файл) gallery-4.png (2.2 MB)
-    │   │   ├── (Файл) gallery-5.png (3.7 MB)
-    │   │   ├── (Файл) gallery-6.png (5.5 MB)
-    │   │   ├── (Файл) gallery-7.png (1.1 MB)
-    │   │   ├── (Файл) gallery-8.png (4.0 MB)
-    │   │   └── (Файл) gallery-9.png (4.0 MB)
-    │   ├── (Папка) territory
-    │   │   ├── (Файл) territory-banya.png (2.6 MB)
-    │   │   ├── (Файл) territory-banya2.png (2.6 MB)
-    │   │   ├── (Файл) territory-bonfire.png (986.1 KB)
-    │   │   ├── (Файл) territory-bonfire2.png (1.9 MB)
-    │   │   ├── (Файл) territory-farm.png (2.6 MB)
-    │   │   ├── (Файл) territory-masterclass.png (700.6 KB)
-    │   │   ├── (Файл) territory-masterclass2.png (2.2 MB)
-    │   │   ├── (Файл) territory-photo.png (654.9 KB)
-    │   │   ├── (Файл) territory-playground.png (608.3 KB)
-    │   │   ├── (Файл) territory-playground2.png (698.1 KB)
-    │   │   ├── (Файл) territory-river.png (1.6 MB)
-    │   │   ├── (Файл) territory-river2.png (3.0 MB)
-    │   │   ├── (Файл) territory-river3.png (1.7 MB)
-    │   │   ├── (Файл) territory-sauna.jpg (400.1 KB)
-    │   │   └── (Файл) territory-sports.png (1.2 MB)
-    │   └── (Файл) visa.png (1.5 KB)
-    ├── (Файл) index.html (56.7 KB)
-    ├── (Файл) indextest.html (86.0 KB)
     ├── (Файл) LICENSE (1.1 KB)
-    └── (Файл) sales.html (28.4 KB)
+    └── (Папка) static
+        ├── (Папка) admin
+        ├── (Папка) css
+        ├── (Папка) fonts
+        │   ├── (Файл) Etude Noire Bold.ttf (65.7 KB)
+        │   ├── (Файл) Etude Noire Light.ttf (63.2 KB)
+        │   ├── (Файл) Etude Noire Medium.ttf (65.6 KB)
+        │   └── (Файл) Etude Noire Regular.ttf (62.6 KB)
+        ├── (Файл) houses.html (64.0 KB)
+        ├── (Папка) images
+        │   ├── (Папка) about_us
+        │   │   ├── (Файл) about-us.png (1.3 MB)
+        │   │   └── (Файл) about-us2.png (3.1 MB)
+        │   ├── (Папка) hero
+        │   │   └── (Файл) hero-background.jpg (12.2 MB)
+        │   ├── (Папка) houses
+        │   │   ├── (Файл) house-1.jpg (232.6 KB)
+        │   │   ├── (Файл) house-2.png (3.7 MB)
+        │   │   ├── (Файл) house-3.png (5.4 MB)
+        │   │   ├── (Файл) house-4.png (4.9 MB)
+        │   │   ├── (Файл) house-5.png (3.8 MB)
+        │   │   └── (Файл) house-6.png (4.0 MB)
+        │   ├── (Папка) intresting_nearby
+        │   │   ├── (Файл) nearby-bekhovo.png (3.8 MB)
+        │   │   ├── (Файл) nearby-bekhovo2.png (1.1 MB)
+        │   │   ├── (Файл) nearby-konyukhov.png (1.3 MB)
+        │   │   ├── (Файл) nearby-polenovo.png (1.7 MB)
+        │   │   └── (Файл) nearby-polenovo2.png (815.7 KB)
+        │   ├── (Файл) mc.png (1.3 KB)
+        │   ├── (Файл) mir.png (1.3 KB)
+        │   ├── (Папка) photogallery
+        │   │   ├── (Файл) gallery-1.png (3.8 MB)
+        │   │   ├── (Файл) gallery-10.png (1.2 MB)
+        │   │   ├── (Файл) gallery-11.png (1.5 MB)
+        │   │   ├── (Файл) gallery-12.png (569.2 KB)
+        │   │   ├── (Файл) gallery-2.png (2.5 MB)
+        │   │   ├── (Файл) gallery-3.png (2.6 MB)
+        │   │   ├── (Файл) gallery-4.png (2.2 MB)
+        │   │   ├── (Файл) gallery-5.png (3.7 MB)
+        │   │   ├── (Файл) gallery-6.png (5.5 MB)
+        │   │   ├── (Файл) gallery-7.png (1.1 MB)
+        │   │   ├── (Файл) gallery-8.png (4.0 MB)
+        │   │   └── (Файл) gallery-9.png (4.0 MB)
+        │   ├── (Папка) territory
+        │   │   ├── (Файл) territory-banya.png (2.6 MB)
+        │   │   ├── (Файл) territory-banya2.png (2.6 MB)
+        │   │   ├── (Файл) territory-bonfire.png (986.1 KB)
+        │   │   ├── (Файл) territory-bonfire2.png (1.9 MB)
+        │   │   ├── (Файл) territory-farm.png (2.6 MB)
+        │   │   ├── (Файл) territory-masterclass.png (700.6 KB)
+        │   │   ├── (Файл) territory-masterclass2.png (2.2 MB)
+        │   │   ├── (Файл) territory-photo.png (654.9 KB)
+        │   │   ├── (Файл) territory-playground.png (608.3 KB)
+        │   │   ├── (Файл) territory-playground2.png (698.1 KB)
+        │   │   ├── (Файл) territory-river.png (1.6 MB)
+        │   │   ├── (Файл) territory-river2.png (3.0 MB)
+        │   │   ├── (Файл) territory-river3.png (1.7 MB)
+        │   │   ├── (Файл) territory-sauna.jpg (400.1 KB)
+        │   │   └── (Файл) territory-sports.png (1.2 MB)
+        │   └── (Файл) visa.png (1.5 KB)
+        ├── (Файл) index.html (56.7 KB)
+        ├── (Файл) indextest.html (86.0 KB)
+        ├── (Папка) js
+        ├── (Папка) other
+        └── (Файл) sales.html (28.4 KB)
