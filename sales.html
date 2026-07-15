@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Акции — Лучший сезон</title>
+    <!-- Подключаем шрифты -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet" />
+    <style>
+        /* Сброс и базовые стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #F7F0E6;
+            color: #494949;
+            width: 1440px;
+            margin: 0 auto;
+            position: relative;
+            overflow-x: hidden;
+        }
+        /* Декоративные фоны (упрощённо) */
+        .bg-decoration {
+            position: absolute;
+            pointer-events: none;
+            z-index: 0;
+        }
+        /* Шрифт Etude Noire (имитация) */
+        .font-etude {
+            font-family: 'Georgia', serif;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+        }
+
+        /* --- МЕНЮ --- */
+        header {
+            position: absolute;
+            top: 32px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1260px;
+            height: 86px;
+            background: #847F57;
+            backdrop-filter: blur(10px);
+            border-radius: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 32px;
+            z-index: 10;
+        }
+        .logo-block {
+            display: flex;
+            align-items: flex-end;
+            gap: 10px;
+        }
+        .logo-icon {
+            width: 46px;
+            height: 46px;
+            background: #F7F0E6;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: #847F57;
+            font-weight: bold;
+        }
+        .logo-text {
+            font-family: 'Georgia', serif;
+            font-size: 22px;
+            line-height: 90%;
+            color: #F7F0E6;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        nav a {
+            font-size: 16px;
+            color: #F7F0E6;
+            text-decoration: none;
+            line-height: 20px;
+        }
+        .contact-phone {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            color: #F7F0E6;
+            font-size: 16px;
+            line-height: 115%;
+            letter-spacing: -0.02em;
+        }
+        .btn-book {
+            background: #9B5026;
+            border-radius: 100px;
+            padding: 10px 20px;
+            color: #F7F0E6;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            transition: 0.2s;
+        }
+        .btn-book:hover {
+            background: #7a3f1e;
+        }
+
+        /* --- ОСНОВНОЙ КОНТЕНТ --- */
+        main {
+            padding-top: 200px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Заголовок Акции */
+        .section-title {
+            text-align: center;
+            font-size: 90px;
+            line-height: 95px;
+            color: #847F57;
+            margin-bottom: 60px;
+        }
+
+        /* Сетка карточек тарифов */
+        .tariffs-grid {
+            width: 1260px;
+            margin: 0 auto 60px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .tariff-card {
+            background: #847F57;
+            border-radius: 20px;
+            padding: 20px 20px 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+            min-height: 540px;
+        }
+        .tariff-card.dark {
+            background: #1E1E1E;
+        }
+        .tariff-card .card-image {
+            width: 100%;
+            height: 220px;
+            border-radius: 10px;
+            background: #9B5026;
+            background-size: cover;
+            background-position: center;
+        }
+        .tariff-card .card-content {
+            text-align: center;
+            color: #F7F0E6;
+        }
+        .tariff-card .card-title {
+            font-family: 'Georgia', serif;
+            font-size: 24px;
+            line-height: 25px;
+            margin-bottom: 14px;
+        }
+        .tariff-card .card-desc {
+            font-size: 18px;
+            line-height: 22px;
+        }
+        .tariff-card .btn-white {
+            background: #F7F0E6;
+            border-radius: 100px;
+            padding: 14px 40px;
+            color: #494949;
+            font-weight: 500;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            width: 100%;
+            max-width: 364px;
+            transition: 0.2s;
+        }
+        .tariff-card .btn-white:hover {
+            background: #e8dfd0;
+        }
+
+        /* Секция "Наши домики" */
+        .houses-section {
+            width: 1240px;
+            margin: 0 auto 100px;
+            text-align: center;
+        }
+        .houses-title {
+            font-size: 90px;
+            line-height: 95px;
+            color: #847F57;
+            margin-bottom: 20px;
+        }
+        .houses-desc {
+            font-size: 20px;
+            line-height: 24px;
+            color: #494949;
+            margin-bottom: 60px;
+        }
+        .houses-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        .house-card {
+            position: relative;
+            height: 500px;
+            border-radius: 20px;
+            background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%),
+                        url('https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=800&q=80') center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 32px;
+            color: #FFFFFF;
+            text-align: center;
+        }
+        .house-card .dots {
+            display: flex;
+            gap: 6px;
+            justify-content: center;
+            margin-bottom: 12px;
+        }
+        .house-card .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #FFFFFF;
+        }
+        .house-card .dot.inactive {
+            opacity: 0.5;
+        }
+        .house-card .house-name {
+            font-weight: 600;
+            font-size: 24px;
+            line-height: 29px;
+            margin-bottom: 4px;
+        }
+        .house-card .house-features {
+            font-size: 18px;
+            line-height: 22px;
+            margin-bottom: 20px;
+        }
+        .house-card .btn-book-house {
+            background: #847F57;
+            border-radius: 100px;
+            padding: 14px 40px;
+            color: #F7F0E6;
+            font-weight: 500;
+            font-size: 20px;
+            border: none;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            width: 100%;
+            transition: 0.2s;
+        }
+        .house-card .btn-book-house:hover {
+            background: #6b664b;
+        }
+        .house-card .btn-more {
+            position: absolute;
+            right: 32px;
+            top: 60%;
+            border: 1px solid #FFFFFF;
+            border-radius: 20px;
+            padding: 10px 28px;
+            color: #FFFFFF;
+            background: transparent;
+            font-size: 16px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .house-card .price-tag {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 94px;
+            height: 128px;
+            background: #9B5026;
+            border-radius: 0 20px 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 16px;
+            line-height: 20px;
+            color: #FFFFFF;
+            padding: 10px;
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 80%);
+        }
+        .price-tag span {
+            display: block;
+            margin-top: 10px;
+        }
+
+        /* --- ФУТЕР --- */
+        footer {
+            position: relative;
+            width: 1440px;
+            margin: 0 auto;
+            padding: 100px 100px 40px;
+            background: #F7F0E6;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            border-top: 1px solid rgba(73,73,73,0.2);
+        }
+        .footer-left {
+            max-width: 240px;
+        }
+        .footer-logo {
+            display: flex;
+            align-items: flex-end;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+        .footer-logo .logo-icon {
+            width: 70px;
+            height: 70px;
+            background: #847F57;
+            color: #F7F0E6;
+            font-size: 48px;
+        }
+        .footer-logo .logo-text {
+            color: #847F57;
+            font-size: 32px;
+            line-height: 90%;
+        }
+        .footer-contacts {
+            text-align: center;
+            color: #494949;
+            margin-bottom: 20px;
+        }
+        .footer-contacts p {
+            font-size: 20px;
+            line-height: 115%;
+            margin-bottom: 6px;
+        }
+        .footer-contacts small {
+            font-size: 16px;
+        }
+        .social-icons {
+            display: flex;
+            gap: 5px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(73,73,73,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #494949;
+            font-size: 18px;
+            text-decoration: none;
+        }
+        .footer-btn {
+            background: #9B5026;
+            border-radius: 100px;
+            padding: 10px 20px;
+            color: #F7F0E6;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            width: 100%;
+        }
+        .footer-columns {
+            display: flex;
+            gap: 100px;
+            flex: 1;
+            justify-content: flex-end;
+        }
+        .footer-col h4 {
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 24px;
+            color: #847F57;
+            margin-bottom: 14px;
+        }
+        .footer-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .footer-col ul li a {
+            color: #494949;
+            text-decoration: none;
+            font-size: 18px;
+            line-height: 22px;
+        }
+        .footer-col ul li a:hover {
+            text-decoration: underline;
+        }
+        .footer-bottom {
+            width: 100%;
+            margin-top: 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            color: #494949;
+            border-top: 1px solid rgba(73,73,73,0.2);
+            padding-top: 20px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .footer-bottom .legal {
+            display: flex;
+            gap: 40px;
+        }
+        .footer-bottom .legal a {
+            color: #494949;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        .footer-bottom .payment-icons {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        .footer-bottom .payment-icons img {
+            height: 24px;
+        }
+
+        /* Адаптивность (минимальная) */
+        @media (max-width: 1440px) {
+            body { width: 100%; }
+            header { width: 90%; }
+            .tariffs-grid, .houses-section { width: 90%; }
+            .houses-grid { grid-template-columns: 1fr; }
+            footer { flex-direction: column; align-items: center; padding: 40px 20px; }
+            .footer-columns { flex-wrap: wrap; justify-content: center; gap: 40px; margin-top: 40px; }
+        }
+        @media (max-width: 768px) {
+            header { flex-wrap: wrap; height: auto; padding: 16px; border-radius: 20px; top: 16px; }
+            nav { flex-wrap: wrap; justify-content: center; gap: 10px; }
+            .tariffs-grid { grid-template-columns: 1fr; }
+            .section-title, .houses-title { font-size: 48px; line-height: 52px; }
+            .house-card .price-tag { width: 70px; height: 100px; font-size: 14px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Декоративные элементы (можно добавить SVG, но здесь опустим для краткости) -->
+
+    <!-- Меню -->
+    <header>
+        <div class="logo-block">
+            <div class="logo-icon">К</div>
+            <div class="logo-text">Лучший<br>сезон</div>
+        </div>
+        <nav>
+            <a href="#">Размещение</a>
+            <a href="#">Акции</a>
+            <a href="#">Территория</a>
+            <a href="#">Интересное рядом</a>
+            <a href="#">О нас</a>
+        </nav>
+        <div class="contact-phone">
+            <span>+7 (991) 255-08-37</span>
+        </div>
+        <button class="btn-book">Забронировать даты</button>
+    </header>
+
+    <main>
+        <!-- Секция Акции -->
+        <section>
+            <h1 class="section-title font-etude">Акции</h1>
+
+            <div class="tariffs-grid">
+                <!-- Карточка 1: День рождения -->
+                <div class="tariff-card">
+                    <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1556740758-90de374c12ad?w=600&q=80');"></div>
+                    <div class="card-content">
+                        <div class="card-title font-etude">Тариф "День рождения"</div>
+                        <div class="card-desc">Дарим скидку в день рождения — 15%</div>
+                    </div>
+                    <button class="btn-white">Забронировать</button>
+                </div>
+
+                <!-- Карточка 2: Пятница со скидкой 50% -->
+                <div class="tariff-card dark">
+                    <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=600&q=80');"></div>
+                    <div class="card-content">
+                        <div class="card-title font-etude">Тариф "Пятница со скидкой 50%"</div>
+                        <div class="card-desc">При бронировании 3-х дней: пятницы, субботы и воскресения, на пятницу действует скидка 50%</div>
+                    </div>
+                    <button class="btn-white">Забронировать</button>
+                </div>
+
+                <!-- Карточка 3: С мая по сентябрь -->
+                <div class="tariff-card">
+                    <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80');"></div>
+                    <div class="card-content">
+                        <div class="card-title font-etude">Тариф "С мая по сентябрь"</div>
+                        <div class="card-desc">От 3-х суток скидка 10%<br>От 5 суток — 15%<br>От 7 суток — 20%</div>
+                    </div>
+                    <button class="btn-white">Забронировать</button>
+                </div>
+
+                <!-- Карточка 4: Выгодная баня -->
+                <div class="tariff-card dark">
+                    <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1581578731117-1d2f0d2c4d2e?w=600&q=80');"></div>
+                    <div class="card-content">
+                        <div class="card-title font-etude">Тариф "Выгодная баня"</div>
+                        <div class="card-desc">При бронировании русской бани от 3-х часов — баня рассчитывается по тарифу 1 500₽/час</div>
+                    </div>
+                    <button class="btn-white">Забронировать</button>
+                </div>
+
+                <!-- Карточка 5: Гостеприимство -->
+                <div class="tariff-card">
+                    <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1542314831-cd9f6a8e7d7e?w=600&q=80');"></div>
+                    <div class="card-content">
+                        <div class="card-title font-etude">Тариф "Гостеприимство"</div>
+                        <div class="card-desc">При бронировании напрямую комплимент от хозяев: набор фермерских продуктов или дополнительный час в бане</div>
+                    </div>
+                    <button class="btn-white">Забронировать</button>
+                </div>
+
+                <!-- Карточка 6: Правильная удаленка -->
+                <div class="tariff-card dark">
+                    <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=600&q=80');"></div>
+                    <div class="card-content">
+                        <div class="card-title font-etude">Тариф "Правильная удаленка"</div>
+                        <div class="card-desc">4 дня по цене 3 в будние дни</div>
+                    </div>
+                    <button class="btn-white">Забронировать</button>
+                </div>
+
+                <!-- Карточка 7: С октября по апрель (третья строка, одна карточка, но для сетки добавим пустые или сделаем отдельно) -->
+                <!-- Поскольку сетка 3 колонки, разместим её в отдельном ряду -->
+            </div>
+            <!-- Дополнительный ряд для 7-й карточки -->
+            <div class="tariffs-grid" style="grid-template-columns: repeat(3, 1fr); margin-top: -24px;">
+                <div class="tariff-card">
+                    <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1516426122078-c23e76319801?w=600&q=80');"></div>
+                    <div class="card-content">
+                        <div class="card-title font-etude">Тариф "С октября по апрель"</div>
+                        <div class="card-desc">От 3-х суток скидка 10%<br>От 5 суток — 20%<br>От 7 суток — 25%</div>
+                    </div>
+                    <button class="btn-white">Забронировать</button>
+                </div>
+                <!-- Остальные две ячейки пустые (можно оставить пустыми) -->
+                <div style="visibility: hidden;"></div>
+                <div style="visibility: hidden;"></div>
+            </div>
+        </section>
+
+        <!-- Секция Наши домики -->
+        <section class="houses-section">
+            <h2 class="houses-title font-etude">Наши домики</h2>
+            <p class="houses-desc">
+                Четыре дома — четыре разных характера. Но всё здесь сделано с вниманием к тому, что важно: камин или сауна, панорамные окна, уютная терраса и вид, который умиротворяет лучше любого магния. Мы создали пространство, в котором есть всё необходимое для комфорта, но нет ничего лишнего, чтобы вы могли расслабиться и провести время так, как хочется именно вам.
+            </p>
+
+            <div class="houses-grid">
+                <!-- Домик 1 -->
+                <div class="house-card">
+                    <div class="dots">
+                        <span class="dot"></span>
+                        <span class="dot inactive"></span>
+                        <span class="dot inactive"></span>
+                    </div>
+                    <div class="house-name">Первый домик</div>
+                    <div class="house-features">4 спальных места + финская сауна</div>
+                    <button class="btn-book-house">Забронировать</button>
+                    <button class="btn-more">Подробнее</button>
+                    <div class="price-tag">
+                        от 8 000 ₽<br><span>за ночь</span>
+                    </div>
+                </div>
+
+                <!-- Домик 2 -->
+                <div class="house-card" style="background-image: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%), url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80');">
+                    <div class="dots">
+                        <span class="dot"></span>
+                        <span class="dot inactive"></span>
+                        <span class="dot inactive"></span>
+                    </div>
+                    <div class="house-name">Второй домик</div>
+                    <div class="house-features">4 спальных места + камин</div>
+                    <button class="btn-book-house">Забронировать</button>
+                    <button class="btn-more">Подробнее</button>
+                    <div class="price-tag">
+                        от 6 000 ₽<br><span>за ночь</span>
+                    </div>
+                </div>
+
+                <!-- Домик 3 -->
+                <div class="house-card" style="background-image: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%), url('https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=800&q=80');">
+                    <div class="dots">
+                        <span class="dot"></span>
+                        <span class="dot inactive"></span>
+                        <span class="dot inactive"></span>
+                    </div>
+                    <div class="house-name">Третий домик</div>
+                    <div class="house-features">4 спальных места + камин</div>
+                    <button class="btn-book-house">Забронировать</button>
+                    <button class="btn-more">Подробнее</button>
+                    <div class="price-tag">
+                        от 6 000 ₽<br><span>за ночь</span>
+                    </div>
+                </div>
+
+                <!-- Домик 4 -->
+                <div class="house-card" style="background-image: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%), url('https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=800&q=80');">
+                    <div class="dots">
+                        <span class="dot"></span>
+                        <span class="dot inactive"></span>
+                        <span class="dot inactive"></span>
+                    </div>
+                    <div class="house-name">Четвертый домик</div>
+                    <div class="house-features">4 спальных места + камин</div>
+                    <button class="btn-book-house">Забронировать</button>
+                    <button class="btn-more">Подробнее</button>
+                    <div class="price-tag">
+                        от 6 000 ₽<br><span>за ночь</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Футер -->
+    <footer>
+        <div class="footer-left">
+            <div class="footer-logo">
+                <div class="logo-icon">К</div>
+                <div class="logo-text">Лучший<br>сезон</div>
+            </div>
+            <div class="footer-contacts">
+                <p>+7 (991) 255-08-37</p>
+                <p><small>bestseasonst@gmail.com</small></p>
+                <p><small>10:00 - 22:00</small></p>
+            </div>
+            <div class="social-icons">
+                <a href="#" class="social-icon">✈</a>
+                <a href="#" class="social-icon">VK</a>
+                <a href="#" class="social-icon">✉</a>
+                <a href="#" class="social-icon">📷</a>
+            </div>
+            <button class="footer-btn">Забронировать даты</button>
+        </div>
+
+        <div class="footer-columns">
+            <div class="footer-col">
+                <h4>Размещение</h4>
+                <ul>
+                    <li><a href="#">Акции</a></li>
+                    <li><a href="#">Бронирование</a></li>
+                    <li><a href="#">Дома</a></li>
+                    <li><a href="#">Правила бронирования</a></li>
+                    <li><a href="#">Выезды компаний</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Территория</h4>
+                <ul>
+                    <li><a href="#">Развлечения</a></li>
+                    <li><a href="#">Чем заняться</a></li>
+                    <li><a href="#">Доп услуги</a></li>
+                    <li><a href="#">Мероприятия</a></li>
+                    <li><a href="#">Интересное рядом</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>О нас</h4>
+                <ul>
+                    <li><a href="#">Галерея</a></li>
+                    <li><a href="#">Отзывы</a></li>
+                    <li><a href="#">Контакты</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Партнерам</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div style="max-width: 250px;">
+                ИП Новосад Софья Павловна<br>ОГРНИП: 323774600773141<br>ИНН: 770902179335
+            </div>
+            <div>© Лучший Сезон 2026. Все права защищены.</div>
+            <div class="legal">
+                <a href="#">Правовые документы</a>
+                <a href="#">Рассылка</a>
+                <a href="#">Политика конфиденциальности</a>
+                <a href="#">Оферта</a>
+                <a href="#">Персональные данные</a>
+            </div>
+            <div class="payment-icons">
+                <span style="font-weight:bold; color:#494949;">VISA</span>
+                <span style="font-weight:bold; color:#494949;">MC</span>
+                <span style="font-weight:bold; color:#494949;">МИР</span>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
