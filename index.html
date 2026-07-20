@@ -7,17 +7,781 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="static/css/index.css" />
+  <style>
+    /* ===== Базовые сбросы ===== */
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      color: #494949;
+      line-height: 1.4;
+      /* ===== ЕДИНЫЙ ФОН ===== */
+      background-color: #F7F0E6;
+      background-image: url('backgrounds/1.svg');
+      background-repeat: no-repeat;
+      background-position: center top;
+      background-size: cover;
+      background-attachment: fixed;
+    }
+
+    .container {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    :root {
+      --bg-beige: #F7F0E6;
+      --dark: #232323;
+      --accent: #9B5026;
+      --gold: #847F57;
+      --text-light: #F7F0E6;
+      --text-dark: #494949;
+      --radius: 20px;
+      --btn-radius: 100px;
+    }
+
+    /* ===== Кнопки ===== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 40px;
+      border-radius: var(--btn-radius);
+      font-size: 16px;
+      font-weight: 400;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--text-light);
+    }
+    .btn-primary:hover {
+      background: #7a3f1e;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--accent);
+      color: var(--text-dark);
+    }
+    .btn-outline:hover {
+      background: var(--accent);
+      color: var(--text-light);
+    }
+
+    .btn-light {
+      background: var(--bg-beige);
+      color: var(--text-dark);
+    }
+    .btn-light:hover {
+      background: #e5dcd0;
+    }
+
+    .btn-dark {
+      background: var(--dark);
+      color: var(--text-light);
+    }
+    .btn-dark:hover {
+      background: #3a3a3a;
+    }
+
+    .btn-gold {
+      background: var(--gold);
+      color: var(--text-light);
+    }
+    .btn-gold:hover {
+      background: #6f6a4b;
+    }
+
+    /* ===== HEADER ===== */
+    .header {
+      position: absolute;
+      top: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 40px);
+      max-width: 1260px;
+      background: #F7F0E6;
+      backdrop-filter: blur(10px);
+      border-radius: 100px;
+      padding: 20px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 10;
+    }
+
+    .header .logo {
+      display: flex;
+      align-items: flex-end;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-dark);
+    }
+
+    .header .logo svg {
+      flex-shrink: 0;
+      width: 47px;
+      height: 47px;
+    }
+
+    .header .logo-text {
+      display: flex;
+      flex-direction: column;
+      font-family: 'Playfair Display', serif;
+      font-size: 21px;
+      line-height: 0.9;
+      letter-spacing: 0.5px;
+      color: #494949;
+      margin-bottom: 2px;
+    }
+    
+    .header .logo-text span:first-child {
+      margin-bottom: 2px;
+    }
+
+    .header nav {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .header nav a {
+      text-decoration: none;
+      color: #494949;
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    .header .actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .header .actions .paw-icon {
+      flex-shrink: 0;
+      width: 30px;
+      height: 28px;
+    }
+
+    .header .phone {
+      font-size: 16px;
+      color: #494949;
+      font-weight: 400;
+    }
+
+    .header .btn-book {
+      background: #9B5026;
+      color: #F7F0E6;
+      padding: 12px 24px;
+      border-radius: 100px;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 400;
+      transition: background 0.3s;
+    }
+    
+    .header .btn-book:hover {
+      background: #7a3f1e;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      height: 860px;
+      background: var(--dark);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url('images/hero/hero-background.jpg') center/cover no-repeat;
+      filter: blur(1.5px);
+      z-index: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      color: white;
+      max-width: 1191px;
+      padding: 0 20px;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 90px;
+      font-weight: 700;
+      line-height: 95px;
+      background: radial-gradient(53.36% 122.5% at 46.64% -0.53%, #6A6C54 0%, #969044 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 10px;
+    }
+
+    .hero-subtitle {
+      font-size: 18px;
+      line-height: 22px;
+      color: #fff;
+      margin-bottom: 40px;
+      max-width: 865px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-form {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
+      max-width: 938px;
+      margin: 0 auto;
+    }
+
+    .hero-form .field {
+      display: flex;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 100px;
+      padding: 14px 32px;
+      gap: 10px;
+      color: white;
+      min-width: 180px;
+      flex: 1;
+    }
+
+    .hero-form .field svg {
+      width: 16px;
+      height: 18px;
+      stroke: white;
+      fill: none;
+      stroke-width: 1.5;
+    }
+
+    .hero-form .field span {
+      font-size: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-form .btn {
+      min-width: 200px;
+    }
+
+    /* ===== РАЗДЕЛИТЕЛЬ ===== */
+    .divider { height: 20px; background: linear-gradient(90deg, #351B0D 0%, #9B5026 43.75%, #683619 100%); transform: scaleX(-1); }
+
+    /* ===== СЕКЦИЯ "О НАС" ===== */
+    .about { display: flex; align-items: flex-start; padding: 0; width: 100%; }
+    .about-image { width: 700px; height: 1000px; flex-shrink: 0; background: url('images/about_us/about-us2.png') center/cover no-repeat; border-radius: 0 0 20px 0; margin-top: -20px; margin-left: 0; }
+    .about-content { flex: 1; padding: 80px 120px 0 100px; display: flex; flex-direction: column; gap: 40px; }
+    .about-title { font-family: 'Playfair Display', serif; font-size: 90px; line-height: 95px; color: var(--gold); }
+    .about-text { font-size: 28px; line-height: 34px; color: var(--text-dark); }
+    .about-actions { display: flex; gap: 32px; flex-wrap: wrap; }
+
+    /* ===== СЕКЦИЯ "ЦИТАТА" ===== */
+    .quote { padding: 60px 0; width: 100%; }
+    .quote-inner { display: flex; align-items: stretch; width: 100%; max-width: none; margin: 0; padding: 0; }
+    .quote-text { flex: 1; padding: 40px 60px 40px 120px; display: flex; flex-direction: column; justify-content: center; }
+    .quote-text .quote-mark { font-family: 'Playfair Display', serif; font-size: 100px; line-height: 1; color: var(--gold); display: block; margin-bottom: 10px; }
+    .quote-text p { font-size: 28px; line-height: 34px; color: var(--text-dark); margin-bottom: 32px; }
+    .quote-text p:last-of-type { margin-bottom: 10px; }
+    .quote-text .quote-mark-end { font-family: 'Playfair Display', serif; font-size: 100px; line-height: 1; color: var(--gold); display: block; align-self: flex-end; }
+    .quote-image { width: 760px; height: 760px; flex-shrink: 0; background: url('images/about_us/about-us.png') center/cover no-repeat; border-radius: 20px 0 0 20px; }
+
+    /* ===== СЕКЦИЯ "НАША ТЕРРИТОРИЯ" ===== */
+    .territory-wrapper {
+      position: relative;
+      width: 1420px;
+      height: 1085px;
+      margin: 80px auto 0;
+    }
+
+    .territory-title-block {
+      position: absolute;
+      width: 674px;
+      height: 251px;
+      left: calc(50% - 674px/2 - 283px);
+      top: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .territory-title-block h2 {
+      font-family: 'Playfair Display', serif;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 90px;
+      line-height: 95px;
+      color: #847F57;
+      width: 100%;
+      height: 190px;
+      display: flex;
+      align-items: center;
+    }
+
+    .territory-title-block p {
+      font-family: 'Montserrat', sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 24px;
+      line-height: 29px;
+      color: #494949;
+    }
+
+    .territory-item {
+      position: absolute;
+      width: 295px;
+      height: 295px;
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .territory-item .bg-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .territory-item .default-state {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 1;
+      background: linear-gradient(0deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 60%);
+      padding: 20px 10px;
+      text-align: center;
+      pointer-events: none;
+    }
+
+    .territory-item .default-state .title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 29px;
+      color: #F7F0E6;
+    }
+
+    .territory-item .hover-state {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(2px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .territory-item:hover .hover-state {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .territory-item .hover-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      text-align: center;
+    }
+
+    .territory-item .hover-content .title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 29px;
+      color: #F7F0E6;
+    }
+
+    .territory-item .hover-content .desc {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 22px;
+      color: #F7F0E6;
+    }
+
+    .territory-item .hover-content .btn-detail {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 28px;
+      background: #847F57;
+      border-radius: 20px;
+      color: #F7F0E6;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 20px;
+      text-decoration: none;
+      transition: background 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .territory-item .hover-content .btn-detail:hover {
+      background: #6f6a4b;
+    }
+
+    .item-farm { left: 60px; top: 60px; }
+    .item-batut { left: 395px; top: 60px; }
+    .item-kostrovaya { left: 730px; top: 60px; }
+    .item-sport { left: 1065px; top: 60px; }
+    .item-banya { left: 60px; top: 395px; }
+    .item-sauna { left: 395px; top: 395px; }
+    .item-photo { left: 730px; top: 395px; }
+    .item-river { left: 1065px; top: 395px; }
+    .item-besedka { left: 60px; top: 730px; }
+    .item-master { left: 395px; top: 730px; }
+
+    .territory-more {
+      position: absolute;
+      width: 295px;
+      height: 295px;
+      left: 730px;
+      top: 730px;
+      background: #847F57;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 0px 20px 20px;
+      box-sizing: border-box;
+      isolation: isolate;
+    }
+
+    .territory-more .more-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 0px;
+      gap: 14px;
+      width: 166px;
+      height: 150px;
+      z-index: 0;
+    }
+
+    .territory-more .more-content span {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 400;
+      font-size: 24px;
+      line-height: 29px;
+      display: flex;
+      align-items: center;
+      color: #F7F0E6;
+    }
+
+    .territory-more .more-content .arrow {
+      width: 26px;
+      height: 20px;
+      border: 1.5px solid #F7F0E6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 2px;
+    }
+
+    .territory-more .border-rect {
+      position: absolute;
+      width: 275px;
+      height: 275px;
+      left: 10px;
+      top: 10px;
+      border: 1px solid #F7F0E6;
+      border-radius: 8px;
+      pointer-events: none;
+      box-sizing: border-box;
+      z-index: 1;
+    }
+
+    /* ===== ОБНОВЛЁННАЯ СЕКЦИЯ "ФОТОГАЛЕРЕЯ" (без rotate, прилегание к краям) ===== */
+    .gallery-section {
+      position: relative;
+      width: 1440px;
+      height: 1290px;
+      margin: 80px auto 0;
+    }
+
+    .gallery-section .gallery-img {
+      position: absolute;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+
+    /* Картинки: расставлены строго по краям, повороты заменены на смену ширины/высоты */
+    .gallery-img-1 { width: 500px; height: 250px; left: 0; top: 0; } /* край лево */
+    .gallery-img-2 { width: 500px; height: 250px; left: 280px; top: 940px; }
+    .gallery-img-3 { width: 350px; height: 250px; left: 560px; top: 72px; }
+    .gallery-img-4 { width: 230px; height: 350px; left: 1210px; top: 820px; } /* край право (без rotate) */
+    .gallery-img-5 { width: 220px; height: 350px; left: 0; top: 940px; } /* край лево (без rotate) */
+    .gallery-img-6 { width: 410px; height: 250px; left: 1030px; top: 0; } /* край право */
+    .gallery-img-7 { width: 250px; height: 400px; left: 840px; top: 880px; } /* (без rotate) */
+    .gallery-img-8 { width: 220px; height: 570px; left: 0; top: 310px; } /* край лево (без rotate) */
+    .gallery-img-9 { width: 250px; height: 450px; left: 1190px; top: 310px; } /* край право (без rotate) */
+
+    /* Центральный блок */
+    .gallery-center {
+      position: absolute;
+      width: 756px;
+      height: 303px;
+      left: 327px;
+      top: 443px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+      z-index: 2;
+    }
+
+    .gallery-center .gallery-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 500;
+      font-size: 90px;
+      line-height: 95px;
+      text-align: center;
+      color: #847F57;
+      width: 100%;
+    }
+
+    .gallery-center .gallery-desc {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 24px;
+      text-align: center;
+      color: #494949;
+      max-width: 674px;
+      margin: 0 auto;
+    }
+
+    .gallery-center .btn-gallery {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 40px;
+      border: 1px solid #9B5026;
+      border-radius: 100px;
+      background: transparent;
+      color: #494949;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 24px;
+      text-decoration: none;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .gallery-center .btn-gallery:hover {
+      background: #9B5026;
+      color: #F7F0E6;
+    }
+
+    /* ===== СЛОГАН ===== */
+    .slogan { text-align: center; padding: 60px 0 80px; }
+    .slogan h2 { font-family: 'Playfair Display', serif; font-size: 44px; line-height: 110%; color: var(--text-dark); max-width: 734px; margin: 0 auto; }
+
+    /* ===== НАШИ ДОМИКИ ===== */
+    .houses { padding: 80px 0; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: 90px; line-height: 95px; color: var(--gold); text-align: center; margin-bottom: 60px; }
+    .houses-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(500px, 1fr)); gap: 20px; }
+    .house-card { position: relative; border-radius: var(--radius); overflow: hidden; height: 500px; background: #333; display: flex; flex-direction: column; justify-content: flex-end; padding: 32px; color: white; }
+    .house-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+    .house-card .overlay { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.8) 100%); z-index: 1; }
+    .house-card .content { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 24px; }
+    .house-card .dots { display: flex; gap: 6px; }
+    .house-card .dots span { width: 8px; height: 8px; border-radius: 50%; background: rgba(255, 255, 255, 0.5); }
+    .house-card .dots span:first-child { background: white; }
+    .house-card h3 { font-size: 24px; font-weight: 600; }
+    .house-card p { font-size: 18px; text-align: center; }
+    .house-card .btn { width: 100%; max-width: 546px; }
+    .price-tag { position: absolute; top: 0; right: 0; z-index: 2; background: var(--accent); color: white; padding: 28px 10px 10px; border-radius: 0 0 0 20px; font-size: 16px; text-align: center; width: 94px; height: 128px; display: flex; flex-direction: column; justify-content: center; align-items: center; clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%); }
+
+    /* ===== ИНТЕРЕСНОЕ РЯДОМ ===== */
+    .nearby { padding: 80px 0; }
+    .nearby-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; }
+    .nearby-card { background: var(--dark); border-radius: 20px; padding: 40px 20px; color: white; display: flex; flex-direction: column; gap: 20px; align-items: center; text-align: center; }
+    .nearby-card .number { font-family: 'Playfair Display', serif; font-size: 40px; color: var(--text-light); }
+    .nearby-card h3 { font-family: 'Playfair Display', serif; font-size: 40px; line-height: 42px; color: var(--text-light); }
+    .nearby-card .image { width: 100%; height: 220px; background: #555; border-radius: 10px; object-fit: cover; }
+    .nearby-card p { font-size: 18px; line-height: 22px; color: var(--text-light); max-width: 360px; }
+    .nearby-card .btn { width: 100%; max-width: 360px; }
+    .nearby-card.gold { background: var(--gold); }
+    .nearby-more { display: flex; justify-content: center; margin-top: 60px; }
+    .nearby-more .btn { border: 1px solid var(--accent); background: transparent; color: var(--text-dark); display: inline-flex; align-items: center; gap: 12px; }
+
+    /* ===== FAQ ===== */
+    .faq { padding: 80px 0; }
+    .faq h2 { font-family: 'Playfair Display', serif; font-size: 90px; line-height: 95px; color: var(--gold); text-align: center; margin-bottom: 60px; }
+    .faq-list { max-width: 1240px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
+    .faq-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 32px; border-radius: 10px; font-size: 32px; font-weight: 500; color: var(--text-light); cursor: pointer; }
+    .faq-item.dark { background: var(--dark); }
+    .faq-item.gold { background: var(--gold); }
+    .faq-item .arrow { width: 24px; height: 12px; background: white; clip-path: polygon(0 0, 100% 0, 50% 100%); }
+
+    /* ===== FOOTER ===== */
+    .footer { background: var(--bg-beige); padding: 100px 20px 40px; }
+    .footer-inner { max-width: 1440px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 60px; justify-content: space-between; }
+    .footer-col { flex: 1 1 200px; }
+    .footer-col h4 { font-size: 20px; font-weight: 600; color: var(--gold); margin-bottom: 14px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul li a { text-decoration: none; color: var(--text-dark); font-size: 18px; }
+    .footer-logo { display: flex; align-items: flex-end; gap: 16px; margin-bottom: 20px; font-family: 'Playfair Display', serif; font-size: 32px; color: var(--gold); }
+    .footer-logo .icon { width: 70px; height: 70px; background: var(--gold); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: white; font-size: 40px; }
+    .footer-contacts { display: flex; flex-direction: column; gap: 14px; margin-bottom: 20px; }
+    .footer-contacts div { font-size: 18px; color: var(--text-dark); text-align: center; }
+    .footer-socials { display: flex; gap: 10px; }
+    .footer-socials a { width: 40px; height: 40px; border-radius: 50%; background: rgba(73, 73, 73, 0.15); display: flex; align-items: center; justify-content: center; color: var(--text-dark); text-decoration: none; font-size: 18px; }
+    .footer-bottom { max-width: 1440px; margin: 40px auto 0; border-top: 1px solid #ccc; padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; font-size: 14px; color: var(--text-dark); }
+    .footer-bottom .legal { display: flex; gap: 40px; }
+    .footer-bottom .legal a { color: var(--text-dark); text-decoration: none; }
+    .footer-bottom .payments { display: flex; gap: 10px; align-items: center; }
+
+    /* ===== Адаптивность ===== */
+    @media (max-width: 1450px) {
+      .territory-wrapper {
+        width: 100%;
+        height: auto;
+        margin: 40px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .territory-title-block {
+        position: static;
+        width: 100%;
+        height: auto;
+        text-align: center;
+        margin-bottom: 40px;
+      }
+      .territory-title-block h2 { height: auto; justify-content: center; }
+      
+      .territory-item, .territory-more {
+        position: static;
+        width: 100%;
+        max-width: 400px;
+        height: 350px;
+        margin: 0 auto 20px;
+      }
+      .territory-more .border-rect { width: calc(100% - 20px); height: calc(100% - 20px); left: 10px; top: 10px; }
+
+      .gallery-section {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 40px 0;
+        position: relative;
+      }
+      .gallery-section .gallery-img {
+        position: static;
+        width: 100%;
+        max-width: 500px;
+        height: 250px;
+        margin: 10px auto;
+      }
+      .gallery-center {
+        position: static;
+        width: 100%;
+        height: auto;
+        padding: 40px 20px;
+        gap: 20px;
+      }
+      .gallery-center .gallery-title {
+        font-size: 60px;
+        line-height: 65px;
+      }
+      .gallery-center .gallery-desc {
+        width: 100%;
+        max-width: 100%;
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .header { flex-wrap: wrap; gap: 10px; border-radius: 20px; padding: 15px 20px; }
+      .header nav { order: 3; width: 100%; justify-content: center; flex-wrap: wrap; gap: 15px; }
+      .header .actions { margin-left: auto; }
+      .hero-title { font-size: 50px; line-height: 55px; }
+      .section-title { font-size: 50px; line-height: 55px; }
+      .about-title { font-size: 50px; line-height: 55px; }
+      
+      .about { flex-direction: column; padding: 40px 20px; }
+      .about-image { width: 100%; height: 400px; margin-top: 0; border-radius: 0 0 20px 0; }
+      .about-content { padding: 40px 0 0 0; width: 100%; }
+
+      .quote-inner { flex-direction: column; }
+      .quote-text { padding: 40px 20px; width: 100%; }
+      .quote-text .quote-mark-end { align-self: flex-end; }
+      .quote-image { width: 100%; height: 400px; border-radius: 0 0 0 20px; }
+    }
+
+    @media (max-width: 600px) {
+      .header .logo-text { font-size: 18px; }
+      .header nav a { font-size: 14px; }
+      .header .phone { display: none; } 
+      .hero-title { font-size: 36px; line-height: 40px; }
+      .hero-form .field { min-width: 140px; padding: 10px 20px; }
+      .hero-form .btn { width: 100%; }
+      .about-image { height: 300px; }
+      .quote-image { height: 300px; }
+      .footer-inner { flex-direction: column; gap: 40px; }
+      .footer-bottom { flex-direction: column; gap: 20px; text-align: center; }
+      .about-actions { flex-direction: column; width: 100%; }
+      .about-actions .btn { width: 100%; justify-content: center; }
+      
+      .territory-item, .territory-more { height: 300px; }
+    }
+  </style>
 </head>
 <body>
 
   <!-- ===== HEADER ===== -->
   <header class="header">
     <a href="#" class="logo">
-      <!-- SVG логотип (остаётся без изменений) -->
       <svg width="47" height="47" viewBox="0 0 47 47" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- ... полный код логотипа ... -->
+        <g clip-path="url(#clip0_2102_3113)">
+          <path d="M20.6016 0.982422C32.6936 -0.496011 43.8335 7.76958 45.7266 19.6631C46.4423 24.1612 45.7965 28.4867 43.8613 32.623C43.7697 32.8198 43.6608 32.9786 43.5146 33.1025C43.3684 33.2264 43.1902 33.3108 42.9668 33.3691C38.5914 34.5042 34.3902 34.0114 30.3232 32.1328C29.9558 31.9632 29.5827 31.8048 29.208 31.6455C28.8337 31.4864 28.4581 31.3257 28.0879 31.1533C24.9196 29.6776 21.7906 29.7592 18.5996 31.1807C16.615 32.064 14.5733 32.8714 12.4863 33.4834C9.53511 34.3484 6.54379 34.0545 3.6123 33.292C3.4748 33.2564 3.3459 33.1598 3.24121 33.0508C3.16161 32.9678 3.09051 32.8718 3.03516 32.7773L2.98535 32.6836C1.52809 29.6596 0.789636 26.472 0.810547 23.1182C0.801136 11.8839 9.31452 2.36258 20.6016 0.982422ZM43.8848 18.5303C40.4671 3.74818 22.6612 -2.53066 10.5039 6.74902C2.94101 12.5224 0.288539 22.785 4.13574 31.415C4.17945 31.513 4.23979 31.627 4.30762 31.7197C4.37924 31.8176 4.44494 31.871 4.49414 31.8818C5.41634 32.0868 6.3508 32.2321 7.31934 32.4014V25.5479C6.5955 26.3892 5.92677 27.1644 5.23438 27.9688L5.16992 28.0439L5.09473 27.9805C4.73072 27.6742 4.40672 27.403 4.0498 27.1025L3.97363 27.0381L4.03809 26.9609C5.06019 25.7625 6.04092 24.5778 7.06543 23.4346C7.23937 23.2403 7.31972 23.0514 7.34766 22.8486C7.36845 22.6973 7.35991 22.5353 7.33496 22.3516C6.81841 22.9488 6.34769 23.4933 5.85254 24.0674L5.78906 24.1416L5.71387 24.0791C5.34532 23.7733 5.022 23.5065 4.66309 23.209L4.58496 23.1445L4.65039 23.0674C5.43721 22.1462 6.17384 21.225 6.97656 20.3672C7.17782 20.1519 7.28618 19.9369 7.33301 19.7041C7.36942 19.5229 7.36884 19.3272 7.34277 19.1064C7.08834 19.3813 6.85952 19.6289 6.61719 19.8906L6.55273 19.9609L6.47949 19.8994C6.13352 19.6086 5.81082 19.3389 5.44629 19.0322L5.36914 18.9668L5.43457 18.8906C6.33187 17.8417 7.19138 16.8381 8.08984 15.7881L8.16602 15.6992L8.24219 15.7881C9.15551 16.8574 10.0163 17.8669 10.8965 18.8975L10.9619 18.9746L10.8838 19.0391C10.5042 19.3545 10.1839 19.621 9.83984 19.9062L9.76562 19.9678L9.70117 19.8955C9.44828 19.6109 9.23857 19.3801 8.99219 19.1055C8.95862 19.3412 8.95949 19.5412 8.99902 19.7227C9.04897 19.9516 9.16243 20.1594 9.36328 20.375C10.1622 21.2315 10.8952 22.1514 11.6758 23.0664L11.7422 23.1436L11.6641 23.208C11.2958 23.5134 10.9773 23.7786 10.6162 24.0781L10.54 24.1406L10.4766 24.0664C9.97073 23.4801 9.49171 22.9249 8.98242 22.334C8.94271 22.5537 8.94769 22.7409 8.99023 22.9102C9.04464 23.1264 9.16253 23.3223 9.34277 23.5234C10.3391 24.6376 11.2917 25.7905 12.2881 26.96L12.3535 27.0361L12.2773 27.1016C11.9162 27.4073 11.5947 27.6788 11.2334 27.9834L11.1582 28.0479L11.0938 27.9727C10.3983 27.1618 9.72349 26.3757 8.98633 25.5176V32.3691C9.00866 32.3735 9.02913 32.3775 9.04688 32.3809C9.08829 32.3886 9.11934 32.393 9.14746 32.3926C10.9306 32.3686 12.6329 31.9424 14.2842 31.2988L14.3184 31.2783C14.3311 31.2682 14.3452 31.2543 14.3604 31.2363C14.39 31.2012 14.4188 31.1549 14.4443 31.1025C14.4962 30.9961 14.5278 30.8773 14.5283 30.793C14.5387 29.5345 14.5409 27.1045 14.5391 24.6748L14.5234 18.5566C14.5222 18.3606 14.5646 18.1879 14.666 18.0625C14.7701 17.9338 14.9243 17.8692 15.1123 17.8691L23.0254 17.8662L31.5801 17.8691C31.7773 17.868 31.9477 17.9139 32.0664 18.0361C32.1845 18.1579 32.2324 18.3365 32.2305 18.5576C32.2213 19.7957 32.2338 22.22 32.2461 24.6455C32.2583 27.0706 32.2712 29.4973 32.2607 30.7363C32.259 30.9437 32.2895 31.0764 32.3564 31.1738C32.4234 31.2712 32.5375 31.3488 32.7373 31.4219C35.7531 32.5279 38.8213 32.6733 41.9531 31.999C42.154 31.9557 42.3006 31.8862 42.415 31.7871C42.5299 31.6877 42.6198 31.5524 42.6992 31.3662C44.4654 27.2078 44.9009 22.9237 43.8848 18.5303ZM16.459 19.3818C16.326 19.3813 16.2319 19.42 16.1709 19.4854C16.1092 19.5515 16.0671 19.6597 16.0693 19.8242L16.1055 24.251C16.1171 26.0764 16.126 27.9022 16.126 28.6777V30.6797C18.5531 29.2488 20.9666 28.5289 23.375 28.5215C25.8221 28.5139 28.256 29.241 30.6846 30.6895C30.6933 28.3289 30.7085 21.9883 30.6846 19.8262V19.8252C30.6845 19.6513 30.6537 19.5455 30.6006 19.4824C30.5508 19.4234 30.4627 19.3818 30.2939 19.3818H16.459Z" fill="#494949" stroke="#494949" stroke-width="0.2"/>
+          <path d="M33.9512 43.3447C32.0066 42.4618 30.1915 41.6241 28.3672 40.8125C25.3751 39.4802 22.369 39.4775 19.3721 40.8018C18.4762 41.1982 17.5821 41.5991 16.6885 42.001L14.0078 43.209C13.9567 43.2322 13.9264 43.2793 13.9082 43.3076C13.8856 43.3429 13.8646 43.3793 13.8291 43.4287L13.7598 43.5254L13.8662 43.5771C20.5641 46.8365 27.196 46.8241 33.9541 43.5264L34.0098 43.499V43.3711L33.9512 43.3447ZM33.9512 43.3447L33.9092 43.4355H33.9102L33.9512 43.3447ZM23.8643 41.5469C21.9021 41.5479 19.9297 42.1509 17.9482 43.373C19.8041 44.0303 22.0244 44.3218 24.1523 44.2969C26.2669 44.272 28.2799 43.9347 29.7461 43.3486C27.7895 42.1485 25.8284 41.5459 23.8643 41.5469Z" fill="#494949" stroke="#494949" stroke-width="0.2"/>
+          <path d="M18.916 34.7168C21.6495 33.4743 24.3934 33.5231 27.1143 34.7812C27.9364 35.161 28.7581 35.5514 29.5635 35.9814C32.5076 37.5547 35.5176 38.6395 38.8066 38.1582L38.8838 38.1465L38.9131 38.2178C38.927 38.2506 38.9416 38.2833 38.9561 38.3164C38.966 38.3392 38.9763 38.3624 38.9863 38.3857L39.0684 38.4336L38.9834 38.5254C38.69 38.844 38.3997 39.1841 38.0928 39.501L37.7793 39.8086C37.6879 39.8936 37.5681 39.9384 37.4521 39.9629C37.3353 39.9876 37.2128 39.9937 37.1084 39.9951C34.7632 40.0254 32.5555 39.3323 30.4219 38.3086C29.2057 37.7258 27.9977 37.1024 26.7881 36.5088C24.196 35.2383 21.6157 35.2802 19.0176 36.5303C17.0799 37.4638 15.145 38.4603 13.1426 39.2051C12.4965 39.4455 11.8227 39.5796 11.1475 39.6855C10.4685 39.7921 9.79506 39.8701 9.12891 39.998C8.95352 40.0315 8.76823 39.9989 8.5957 39.9385C8.42242 39.8778 8.25449 39.7856 8.1084 39.6924C7.96193 39.5989 7.83501 39.5022 7.74512 39.4287C7.70009 39.3919 7.66355 39.3608 7.63867 39.3389C7.62649 39.3281 7.61696 39.3195 7.61035 39.3135L7.60059 39.3037H7.59961L7.59863 39.3027L6.84082 38.5693L6.78418 38.5146L6.82422 38.4463L6.8252 38.4453C6.82579 38.4443 6.82603 38.4423 6.82715 38.4404C6.82943 38.4366 6.83283 38.4308 6.83691 38.4238C6.84503 38.41 6.85669 38.3913 6.86914 38.3701C6.89416 38.3276 6.92424 38.2763 6.94434 38.2422L6.97559 38.1885L7.03711 38.1924C7.29571 38.2087 7.55768 38.223 7.81836 38.2422L8.30273 38.2666C10.7164 38.339 12.9987 37.6351 15.2197 36.5273C16.4461 35.9167 17.6703 35.2829 18.916 34.7168Z" fill="#494949" stroke="#494949" stroke-width="0.2"/>
+          <path d="M28.4297 20.8115C28.7469 20.8115 29.0096 21.0611 29.0098 21.376V31.0107H27.6104V22.4229C27.6104 22.2242 27.4432 22.0578 27.2305 22.0576H18.4697C18.2571 22.0578 18.0898 22.2243 18.0898 22.4229V31.0107H16.8105V21.376C16.8107 21.0611 17.0734 20.8115 17.3906 20.8115H28.4297Z" fill="#494949" stroke="#494949" stroke-width="0.2"/>
+        </g>
+        <defs>
+          <clipPath id="clip0_2102_3113"><rect width="46.911" height="46.911" fill="white"/></clipPath>
+        </defs>
       </svg>
+
       <div class="logo-text">
         <span>Лучший</span>
         <span>сезон</span>
@@ -34,8 +798,18 @@
 
     <div class="actions">
       <svg class="paw-icon" width="30" height="28" viewBox="0 0 30 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- ... код иконки лапы ... -->
+        <g clip-path="url(#clip0_2102_3126)">
+          <path d="M16 6.47324C16 4.13333 17.318 0 19.5268 0C21.7357 0 24 3.97295 24 6.47324C24 8.97354 22.2093 11 20 11C17.7907 11 16 8.97311 16 6.47324Z" fill="#494949"/>
+          <path d="M24.4429 27.1753C23.3884 27.9823 22.0624 28.1293 20.8283 27.9042C19.5942 27.6791 18.4232 27.1131 17.2567 26.5768C17.2493 26.5734 17.2419 26.5701 17.2346 26.5668C15.8139 25.9147 14.1861 25.9147 12.7654 26.5668C12.7577 26.5701 12.7503 26.5734 12.7429 26.5772C11.5764 27.1135 10.4054 27.6795 9.1713 27.9046C7.93717 28.1297 6.61079 27.9831 5.55665 27.1757C4.50211 26.3688 3.79484 24.8074 4.05356 23.3317C4.29177 21.9751 5.24423 20.9768 6.22251 20.2517C7.20079 19.5266 8.28035 18.9468 9.07126 17.9419C9.88677 16.9056 10.3144 15.518 10.9905 14.3443C11.0004 14.3267 11.0106 14.3092 11.0213 14.2912C12.8175 11.2363 17.1829 11.2363 18.9787 14.2912C18.989 14.3092 18.9992 14.3267 19.0095 14.3443C19.6856 15.518 20.1132 16.9056 20.9287 17.9419C21.7197 18.9468 22.7992 19.5266 23.7775 20.2517C24.7558 20.9768 25.7082 21.9751 25.9464 23.3317C26.2052 24.8074 25.4979 26.3688 24.4433 27.1757L24.4429 27.1753Z" fill="#494949"/>
+          <path d="M4.9274 17.7822C3.17059 18.4739 1.11714 17.4637 0.340609 15.5258C-0.43592 13.5879 0.130159 9.79961 1.88697 9.10789C3.64379 8.41617 5.97547 11.2071 6.70221 13.021C7.47874 14.9589 6.68422 17.0904 4.92782 17.7822H4.9274Z" fill="#494949"/>
+          <path d="M6.00042 6.47324C6.00042 3.97295 8.26427 0 10.4732 0C12.682 0 14 4.13333 14 6.47324C14 8.97311 12.2093 11 10 11C7.7907 11 6 8.97311 6 6.47324H6.00042Z" fill="#494949"/>
+          <path d="M29.659 15.5258C28.8825 17.4637 26.8287 18.4739 25.0723 17.7822C23.3156 17.0904 22.5211 14.9589 23.298 13.021C24.0247 11.2075 26.3563 8.41616 28.1131 9.10788C29.8698 9.7996 30.4359 13.5879 29.6594 15.5258H29.659Z" fill="#494949"/>
+        </g>
+        <defs>
+          <clipPath id="clip0_2102_3126"><rect width="30" height="28" fill="white"/></clipPath>
+        </defs>
       </svg>
+
       <span class="phone">+7 (991) 255-08-37</span>
       <a href="#" class="btn-book">Забронировать даты</a>
     </div>
@@ -69,7 +843,7 @@
 
   <div class="divider"></div>
 
-  <!-- ===== О НАС ===== -->
+  <!-- ===== СЕКЦИЯ "О НАС" ===== -->
   <section class="about">
     <div class="about-image"></div>
     <div class="about-content">
@@ -87,7 +861,7 @@
     </div>
   </section>
 
-  <!-- ===== ЦИТАТА ===== -->
+  <!-- ===== СЕКЦИЯ "ЦИТАТА" ===== -->
   <section class="quote">
     <div class="quote-inner">
       <div class="quote-text">
@@ -116,9 +890,8 @@
   <section class="houses container">
     <h2 class="section-title">Наши домики</h2>
     <div class="houses-grid">
-      <!-- Все картинки теперь с префиксом static/ -->
       <div class="house-card">
-        <img src="static/images/houses/house-1.jpg" alt="Первый домик" />
+        <img src="images/houses/house-1.jpg" alt="Первый домик" />
         <div class="overlay"></div>
         <div class="content">
           <div class="dots"><span></span><span></span><span></span></div>
@@ -129,29 +902,215 @@
         </div>
         <div class="price-tag">от 8 000 ₽<br>за ночь</div>
       </div>
-      <!-- ... аналогично для остальных домиков с static/... -->
+      <div class="house-card">
+        <img src="images/houses/house-2.png" alt="Второй домик" />
+        <div class="overlay"></div>
+        <div class="content">
+          <div class="dots"><span></span><span></span><span></span></div>
+          <h3>Второй домик</h3>
+          <p>4 спальных места + камин</p>
+          <button class="btn btn-gold">Забронировать</button>
+          <a href="#" class="btn btn-outline" style="border-color: white; color: white;">Подробнее</a>
+        </div>
+        <div class="price-tag">от 6 000 ₽<br>за ночь</div>
+      </div>
+      <div class="house-card">
+        <img src="images/houses/house-3.png" alt="Третий домик" />
+        <div class="overlay"></div>
+        <div class="content">
+          <div class="dots"><span></span><span></span><span></span></div>
+          <h3>Третий домик</h3>
+          <p>4 спальных места + камин</p>
+          <button class="btn btn-gold">Забронировать</button>
+          <a href="#" class="btn btn-outline" style="border-color: white; color: white;">Подробнее</a>
+        </div>
+        <div class="price-tag">от 6 000 ₽<br>за ночь</div>
+      </div>
+      <div class="house-card">
+        <img src="images/houses/house-4.png" alt="Четвертый домик" />
+        <div class="overlay"></div>
+        <div class="content">
+          <div class="dots"><span></span><span></span><span></span></div>
+          <h3>Четвертый домик</h3>
+          <p>4 спальных места + камин</p>
+          <button class="btn btn-gold">Забронировать</button>
+          <a href="#" class="btn btn-outline" style="border-color: white; color: white;">Подробнее</a>
+        </div>
+        <div class="price-tag">от 6 000 ₽<br>за ночь</div>
+      </div>
     </div>
   </section>
 
-  <!-- ===== ТЕРРИТОРИЯ ===== -->
+  <!-- ===== НАША ТЕРРИТОРИЯ ===== -->
   <section class="territory-wrapper">
     <div class="territory-title-block">
       <h2>Наша территория</h2>
       <p>Большой лесной массив для уединенного отдыха</p>
     </div>
-    <!-- Все картинки с static/ -->
+
     <div class="territory-item item-farm">
-      <img class="bg-img" src="static/images/territory/territory-farm.png" alt="Контактная ферма" />
-      <!-- ... -->
+      <img class="bg-img" src="images/territory/territory-farm.png" alt="Контактная ферма" />
+      <div class="default-state">
+        <div class="title">Контактная<br>ферма</div>
+      </div>
+      <div class="hover-state">
+        <div class="hover-content">
+          <div class="title">Контактная<br>ферма</div>
+          <div class="desc">Покормить животных, приобрести фермерские продукты или даже научиться доить корову.</div>
+          <a href="#" class="btn-detail">Подробнее</a>
+        </div>
+      </div>
     </div>
-    <!-- ... остальные элементы территории ... -->
+
+    <div class="territory-item item-batut">
+      <img class="bg-img" src="images/territory/territory-playground.png" alt="Батут и детская площадка" />
+      <div class="default-state">
+        <div class="title">Батут и детская<br>площадка</div>
+      </div>
+      <div class="hover-state">
+        <div class="hover-content">
+          <div class="title">Батут и детская<br>площадка</div>
+          <div class="desc">Нашим маленьким постояльцам точно не будет скучно.</div>
+          <a href="#" class="btn-detail">Подробнее</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="territory-item item-kostrovaya">
+      <img class="bg-img" src="images/territory/territory-bonfire.png" alt="Костровая зона" />
+      <div class="default-state">
+        <div class="title">Костровая<br>зона</div>
+      </div>
+      <div class="hover-state">
+        <div class="hover-content">
+          <div class="title">Костровая<br>зона</div>
+          <div class="desc">Sed ut perspiciatis unde omnis iste natus error dicta sunt explicabo.</div>
+          <a href="#" class="btn-detail">Подробнее</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="territory-item item-sport">
+      <img class="bg-img" src="images/territory/territory-sports.png" alt="Спортивные игры" />
+      <div class="default-state">
+        <div class="title">Спортивные<br>игры</div>
+      </div>
+      <div class="hover-state">
+        <div class="hover-content">
+          <div class="title">Спортивные<br>игры</div>
+          <div class="desc">Волейбольная площадка, бадминтон, детский футбол и др.</div>
+          <a href="#" class="btn-detail">Подробнее</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="territory-item item-banya">
+      <img class="bg-img" src="images/territory/territory-banya.png" alt="Русская баня" />
+      <div class="default-state">
+        <div class="title">Русская<br>баня</div>
+      </div>
+      <div class="hover-state">
+        <div class="hover-content">
+          <div class="title">Русская<br>баня</div>
+          <div class="desc">Баня на дровах в лучших традициях парного искусства.</div>
+          <a href="#" class="btn-detail">Подробнее</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="territory-item item-sauna">
+      <img class="bg-img" src="images/territory/territory-sauna.jpg" alt="Финская сауна" />
+      <div class="default-state">
+        <div class="title">Финская<br>сауна</div>
+      </div>
+      <div class="hover-state">
+        <div class="hover-content">
+          <div class="title">Финская<br>сауна</div>
+          <div class="desc">Собственная финская сауна, не ограничена в использовании.</div>
+          <a href="#" class="btn-detail">Подробнее</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="territory-item item-photo">
+      <img class="bg-img" src="images/territory/territory-photo.png" alt="Фотосессии" />
+      <div class="default-state">
+        <div class="title">Фотосессии</div>
+      </div>
+      <div class="hover-state">
+        <div class="hover-content">
+          <div class="title">Фотосессии</div>
+          <div class="desc">Уникальность нашей локации оценила и съёмочная команда Алины Загитовой, организуем фотосессию и вам.</div>
+          <a href="#" class="btn-detail">Подробнее</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="territory-item item-river">
+      <img class="bg-img" src="images/territory/territory-river.png" alt="Река Скнижка" />
+      <div class="default-state">
+        <div class="title">Река<br>“Скнижка”</div>
+      </div>
+      <div class="hover-state">
+        <div class="hover-content">
+          <div class="title">Река<br>“Скнижка”</div>
+          <div class="desc">Арендовать сапборд, порыбачить или просто предаться “водной медитации”, слушая журчание реки.</div>
+          <a href="#" class="btn-detail">Подробнее</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="territory-item item-besedka">
+      <img class="bg-img" src="images/territory/territory-river2.png" alt="Большая беседка" />
+      <div class="default-state">
+        <div class="title">Большая<br>беседка</div>
+      </div>
+      <div class="hover-state">
+        <div class="hover-content">
+          <div class="title">Большая<br>беседка</div>
+          <div class="desc">Идеальное решение для проведения мероприятий и ужинов в большой компании.</div>
+          <a href="#" class="btn-detail">Подробнее</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="territory-item item-master">
+      <img class="bg-img" src="images/territory/territory-masterclass.png" alt="Мастер-классы" />
+      <div class="default-state">
+        <div class="title">Мастер-классы</div>
+      </div>
+      <div class="hover-state">
+        <div class="hover-content">
+          <div class="title">Мастер-классы</div>
+          <div class="desc">В летний сезон и по праздникам у нас проходят различные мастер-классы по живописи, флористике, йога-практики и другие активности.</div>
+          <a href="#" class="btn-detail">Подробнее</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="territory-more">
+      <div class="border-rect"></div>
+      <div class="more-content">
+        <span>Больше развлечений и услуг в глэмпинге</span>
+        <div class="arrow">→</div>
+      </div>
+    </div>
   </section>
 
-  <!-- ===== ФОТОГАЛЕРЕЯ ===== -->
+  <!-- ===== ОБНОВЛЁННАЯ СЕКЦИЯ "ФОТОГАЛЕРЕЯ" (без поворотов, с прилеганием к краям) ===== -->
   <section class="gallery-section">
-    <!-- Все картинки с static/ -->
-    <img class="gallery-img gallery-img-1" src="static/images/photogallery/gallery-6.png" alt="Фото 1" />
-    <!-- ... -->
+    <!-- Картинки, расставленные строго по макету, без rotate -->
+    <img class="gallery-img gallery-img-1" src="images/photogallery/gallery-6.png" alt="Фото 1" />
+    <img class="gallery-img gallery-img-2" src="images/photogallery/gallery-1.png" alt="Фото 2" />
+    <img class="gallery-img gallery-img-3" src="images/photogallery/gallery-9.png" alt="Фото 3" />
+    <img class="gallery-img gallery-img-4" src="images/photogallery/gallery-10.png" alt="Фото 4" />
+    <img class="gallery-img gallery-img-5" src="images/photogallery/gallery-3.png" alt="Фото 5" />
+    <img class="gallery-img gallery-img-6" src="images/photogallery/gallery-12.png" alt="Фото 6" />
+    <img class="gallery-img gallery-img-7" src="images/photogallery/gallery-4.png" alt="Фото 7" />
+    <img class="gallery-img gallery-img-8" src="images/photogallery/gallery-11.png" alt="Фото 8" />
+    <img class="gallery-img gallery-img-9" src="images/photogallery/gallery-7.png" alt="Фото 9" />
+
+    <!-- Центральный блок -->
     <div class="gallery-center">
       <div class="gallery-title">Фотогалерея</div>
       <div class="gallery-desc">
@@ -165,25 +1124,43 @@
   <section class="nearby container">
     <h2 class="section-title">Интересное рядом</h2>
     <div class="nearby-grid">
-      <!-- Картинки с static/ -->
-      <div class="nearby-card"><div class="number">01</div><h3>Усадьба "Поленово"</h3><img class="image" src="static/images/intresting_nearby/nearby-polenovo.png" /><p>В 3 км от нас невероятной красоты усадьба русского художника Василия Поленова, которая по праву стала достоянием Тульского края.</p><a href="#" class="btn btn-light">Подробнее</a></div>
-      <!-- ... -->
+      <div class="nearby-card"><div class="number">01</div><h3>Усадьба "Поленово"</h3><img class="image" src="images/intresting_nearby/nearby-polenovo.png" /><p>В 3 км от нас невероятной красоты усадьба русского художника Василия Поленова, которая по праву стала достоянием Тульского края.</p><a href="#" class="btn btn-light">Подробнее</a></div>
+      <div class="nearby-card gold"><div class="number">02</div><h3>деревня Ф. Конюхова</h3><img class="image" src="images/intresting_nearby/nearby-konyukhov.png" /><p>В 6 км от нас Арт-проект всемирно известного путешественника Федора Конюхова — необычное пространство для вдохновения.</p><a href="#" class="btn btn-light">Подробнее</a></div>
+      <div class="nearby-card"><div class="number">03</div><h3>деревня “Бёхово”</h3><img class="image" src="images/intresting_nearby/nearby-bekhovo.png" /><p>В 5 км от нас находится старинная и живописная деревня Бёхово, которая в 2021 г. вошла в топ лучших деревень мира по версии ООН.</p><a href="#" class="btn btn-light">Подробнее</a></div>
     </div>
+    <div class="nearby-more"><a href="#" class="btn btn-outline">Больше интересных мест рядом <span style="display:inline-block; border:1px solid #494949; border-radius:2px; padding:2px 6px; margin-left:10px;">→</span></a></div>
   </section>
 
   <!-- ===== FAQ ===== -->
   <section class="faq container">
     <h2>Ответы на вопросы</h2>
     <div class="faq-list">
-      <!-- ... -->
+      <div class="faq-item dark"><span>Как добраться до глэмпинга?</span><div class="arrow"></div></div>
+      <div class="faq-item gold"><span>Какие условия бронирования и отмены?</span><div class="arrow"></div></div>
+      <div class="faq-item dark"><span>Есть ли завтраки?</span><div class="arrow"></div></div>
+      <div class="faq-item gold"><span>Можно ли кормить животных глэмпинга?</span><div class="arrow"></div></div>
+      <div class="faq-item dark"><span>Можно ли с животными?</span><div class="arrow"></div></div>
+      <div class="faq-item gold"><span>Можно ли арендовать домик на месяц или больше?</span><div class="arrow"></div></div>
     </div>
   </section>
 
   <!-- ===== FOOTER ===== -->
   <footer class="footer">
-    <!-- ... -->
+    <div class="footer-inner">
+      <div class="footer-col" style="flex:0 0 240px;">
+        <div class="footer-logo"><div class="icon">К</div><span>Лучший сезон</span></div>
+        <div class="footer-contacts"><div>+7 (991) 255-08-37</div><div>bestseasonst@gmail.com</div><div>10:00 - 22:00</div></div>
+        <div class="footer-socials"><a href="#">📱</a><a href="#">ВК</a><a href="#">📷</a><a href="#">✉️</a></div>
+        <a href="#" class="btn btn-primary" style="margin-top:20px; width:100%;">Забронировать даты</a>
+      </div>
+      <div class="footer-col"><h4>Размещение</h4><ul><li><a href="#">Акции</a></li><li><a href="#">Бронирование</a></li><li><a href="#">Дома</a></li><li><a href="#">Правила бронирования</a></li><li><a href="#">Выезды компаний</a></li></ul></div>
+      <div class="footer-col"><h4>Территория</h4><ul><li><a href="#">Развлечения</a></li><li><a href="#">Чем заняться</a></li><li><a href="#">Доп услуги</a></li><li><a href="#">Мероприятия</a></li><li><a href="#">Интересное рядом</a></li></ul></div>
+      <div class="footer-col"><h4>О нас</h4><ul><li><a href="#">Галерея</a></li><li><a href="#">Отзывы</a></li><li><a href="#">Контакты</a></li><li><a href="#">FAQ</a></li><li><a href="#">Партнерам</a></li></ul></div>
+    </div>
+    <div class="footer-inner" style="margin-top:20px;">
+      <div class="footer-col" style="flex:1;"><h4>Правовые документы</h4><div style="display:flex; gap:40px; flex-wrap:wrap;"><div><a href="#" style="color:#494949; text-decoration:none; display:block; margin-bottom:6px;">Рассылка</a><a href="#" style="color:#494949; text-decoration:none;">Оферта</a></div><div><a href="#" style="color:#494949; text-decoration:none; display:block; margin-bottom:6px;">Политика конфиденциальности</a><a href="#" style="color:#494949; text-decoration:none;">Персональные данные</a></div></div></div>
+    </div>
+    <div class="footer-bottom"><div>ИП Новосад Софья Павловна ОГРНИП: 323774600773141 ИНН: 770902179335</div><div>© Лучший Сезон 2026. Все права защищены.</div><div class="payments"><span>💳</span><span>💳</span><span>💳</span></div></div>
   </footer>
-
-  <script src="static/js/index.js"></script>
 </body>
 </html>
