@@ -1,0 +1,513 @@
+/* ===== Базовые сбросы ===== */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  color: #494949;
+  line-height: 1.4;
+  background-color: #F7F0E6;
+  /* Фон из корневой папки backgrounds/ — поднимаемся на два уровня */
+  background-image: url('../../backgrounds/1.svg');
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+:root {
+  --bg-beige: #F7F0E6;
+  --dark: #232323;
+  --accent: #9B5026;
+  --gold: #847F57;
+  --text-light: #F7F0E6;
+  --text-dark: #494949;
+  --radius: 20px;
+  --btn-radius: 100px;
+}
+
+/* ===== Кнопки (без изменений) ===== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 40px;
+  border-radius: var(--btn-radius);
+  font-size: 16px;
+  font-weight: 400;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s;
+  text-decoration: none;
+}
+
+.btn-primary { background: var(--accent); color: var(--text-light); }
+.btn-primary:hover { background: #7a3f1e; }
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--text-dark);
+}
+.btn-outline:hover { background: var(--accent); color: var(--text-light); }
+
+.btn-light { background: var(--bg-beige); color: var(--text-dark); }
+.btn-light:hover { background: #e5dcd0; }
+
+.btn-dark { background: var(--dark); color: var(--text-light); }
+.btn-dark:hover { background: #3a3a3a; }
+
+.btn-gold { background: var(--gold); color: var(--text-light); }
+.btn-gold:hover { background: #6f6a4b; }
+
+/* ===== HEADER ===== */
+.header {
+  position: absolute;
+  top: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 40px);
+  max-width: 1260px;
+  background: #F7F0E6;
+  backdrop-filter: blur(10px);
+  border-radius: 100px;
+  padding: 20px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+}
+
+.header .logo {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--text-dark);
+}
+
+.header .logo svg { flex-shrink: 0; width: 47px; height: 47px; }
+
+.header .logo-text {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Playfair Display', serif;
+  font-size: 21px;
+  line-height: 0.9;
+  letter-spacing: 0.5px;
+  color: #494949;
+  margin-bottom: 2px;
+}
+.header .logo-text span:first-child { margin-bottom: 2px; }
+
+.header nav { display: flex; align-items: center; gap: 30px; }
+.header nav a {
+  text-decoration: none;
+  color: #494949;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.header .actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.header .actions .paw-icon { flex-shrink: 0; width: 30px; height: 28px; }
+.header .phone { font-size: 16px; color: #494949; font-weight: 400; }
+
+.header .btn-book {
+  background: #9B5026;
+  color: #F7F0E6;
+  padding: 12px 24px;
+  border-radius: 100px;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 400;
+  transition: background 0.3s;
+}
+.header .btn-book:hover { background: #7a3f1e; }
+
+/* ===== HERO ===== */
+.hero {
+  height: 860px;
+  background: var(--dark);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  /* Путь к картинке из папки static/images/hero — поднимаемся на один уровень от css */
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url('../images/hero/hero-background.jpg') center/cover no-repeat;
+  filter: blur(1.5px);
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  color: white;
+  max-width: 1191px;
+  padding: 0 20px;
+}
+
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 90px;
+  font-weight: 700;
+  line-height: 95px;
+  background: radial-gradient(53.36% 122.5% at 46.64% -0.53%, #6A6C54 0%, #969044 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 10px;
+}
+
+.hero-subtitle {
+  font-size: 18px;
+  line-height: 22px;
+  color: #fff;
+  margin-bottom: 40px;
+  max-width: 865px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  max-width: 938px;
+  margin: 0 auto;
+}
+
+.hero-form .field {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 100px;
+  padding: 14px 32px;
+  gap: 10px;
+  color: white;
+  min-width: 180px;
+  flex: 1;
+}
+
+.hero-form .field svg { width: 16px; height: 18px; stroke: white; fill: none; stroke-width: 1.5; }
+.hero-form .field span { font-size: 16px; letter-spacing: -0.02em; }
+.hero-form .btn { min-width: 200px; }
+
+/* ===== РАЗДЕЛИТЕЛЬ ===== */
+.divider { height: 20px; background: linear-gradient(90deg, #351B0D 0%, #9B5026 43.75%, #683619 100%); transform: scaleX(-1); }
+
+/* ===== О НАС ===== */
+.about { display: flex; align-items: flex-start; padding: 0; width: 100%; }
+.about-image {
+  width: 700px; height: 1000px; flex-shrink: 0;
+  background: url('../images/about_us/about-us2.png') center/cover no-repeat;
+  border-radius: 0 0 20px 0; margin-top: -20px; margin-left: 0;
+}
+.about-content { flex: 1; padding: 80px 120px 0 100px; display: flex; flex-direction: column; gap: 40px; }
+.about-title { font-family: 'Playfair Display', serif; font-size: 90px; line-height: 95px; color: var(--gold); }
+.about-text { font-size: 28px; line-height: 34px; color: var(--text-dark); }
+.about-actions { display: flex; gap: 32px; flex-wrap: wrap; }
+
+/* ===== ЦИТАТА ===== */
+.quote { padding: 60px 0; width: 100%; }
+.quote-inner { display: flex; align-items: stretch; width: 100%; max-width: none; margin: 0; padding: 0; }
+.quote-text { flex: 1; padding: 40px 60px 40px 120px; display: flex; flex-direction: column; justify-content: center; }
+.quote-text .quote-mark { font-family: 'Playfair Display', serif; font-size: 100px; line-height: 1; color: var(--gold); display: block; margin-bottom: 10px; }
+.quote-text p { font-size: 28px; line-height: 34px; color: var(--text-dark); margin-bottom: 32px; }
+.quote-text p:last-of-type { margin-bottom: 10px; }
+.quote-text .quote-mark-end { font-family: 'Playfair Display', serif; font-size: 100px; line-height: 1; color: var(--gold); display: block; align-self: flex-end; }
+.quote-image {
+  width: 760px; height: 760px; flex-shrink: 0;
+  background: url('../images/about_us/about-us.png') center/cover no-repeat;
+  border-radius: 20px 0 0 20px;
+}
+
+/* ===== ТЕРРИТОРИЯ ===== */
+.territory-wrapper {
+  position: relative;
+  width: 1420px;
+  height: 1085px;
+  margin: 80px auto 0;
+}
+
+.territory-title-block {
+  position: absolute;
+  width: 674px; height: 251px;
+  left: calc(50% - 674px/2 - 283px);
+  top: 0;
+  display: flex; flex-direction: column; gap: 32px;
+}
+
+.territory-title-block h2 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 500; font-size: 90px; line-height: 95px;
+  color: #847F57; width: 100%; height: 190px;
+  display: flex; align-items: center;
+}
+
+.territory-title-block p {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400; font-size: 24px; line-height: 29px;
+  color: #494949;
+}
+
+.territory-item {
+  position: absolute;
+  width: 295px; height: 295px;
+  border-radius: 10px; overflow: hidden; cursor: pointer;
+}
+
+.territory-item .bg-img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;
+}
+
+.territory-item .default-state {
+  position: absolute; bottom: 0; left: 0; right: 0; z-index: 1;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 60%);
+  padding: 20px 10px; text-align: center; pointer-events: none;
+}
+
+.territory-item .default-state .title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600; font-size: 24px; line-height: 29px; color: #F7F0E6;
+}
+
+.territory-item .hover-state {
+  position: absolute; inset: 0; z-index: 2;
+  background: rgba(0, 0, 0, 0.3); backdrop-filter: blur(2px);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transition: opacity 0.3s ease; pointer-events: none; padding: 20px; border-radius: 10px;
+}
+
+.territory-item:hover .hover-state { opacity: 1; pointer-events: auto; }
+
+.territory-item .hover-content {
+  display: flex; flex-direction: column; align-items: center; gap: 24px; text-align: center;
+}
+
+.territory-item .hover-content .title {
+  font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 24px; line-height: 29px; color: #F7F0E6;
+}
+
+.territory-item .hover-content .desc {
+  font-family: 'Montserrat', sans-serif; font-weight: 400; font-size: 18px; line-height: 22px; color: #F7F0E6;
+}
+
+.territory-item .hover-content .btn-detail {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 10px 28px; background: #847F57; border-radius: 20px;
+  color: #F7F0E6; font-family: 'Montserrat', sans-serif; font-weight: 500;
+  font-size: 16px; line-height: 20px; text-decoration: none;
+  transition: background 0.3s; border: none; cursor: pointer;
+}
+.territory-item .hover-content .btn-detail:hover { background: #6f6a4b; }
+
+/* Позиционирование элементов территории (без изменений) */
+.item-farm { left: 60px; top: 60px; }
+.item-batut { left: 395px; top: 60px; }
+.item-kostrovaya { left: 730px; top: 60px; }
+.item-sport { left: 1065px; top: 60px; }
+.item-banya { left: 60px; top: 395px; }
+.item-sauna { left: 395px; top: 395px; }
+.item-photo { left: 730px; top: 395px; }
+.item-river { left: 1065px; top: 395px; }
+.item-besedka { left: 60px; top: 730px; }
+.item-master { left: 395px; top: 730px; }
+
+.territory-more {
+  position: absolute; width: 295px; height: 295px; left: 730px; top: 730px;
+  background: #847F57; border-radius: 10px;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  padding: 0px 20px 20px; box-sizing: border-box; isolation: isolate;
+}
+
+.territory-more .more-content {
+  display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
+  padding: 0px; gap: 14px; width: 166px; height: 150px; z-index: 0;
+}
+
+.territory-more .more-content span {
+  font-family: 'Montserrat', sans-serif; font-weight: 400; font-size: 24px; line-height: 29px;
+  display: flex; align-items: center; color: #F7F0E6;
+}
+
+.territory-more .more-content .arrow {
+  width: 26px; height: 20px; border: 1.5px solid #F7F0E6;
+  display: flex; align-items: center; justify-content: center; border-radius: 2px;
+}
+
+.territory-more .border-rect {
+  position: absolute; width: 275px; height: 275px; left: 10px; top: 10px;
+  border: 1px solid #F7F0E6; border-radius: 8px; pointer-events: none; box-sizing: border-box; z-index: 1;
+}
+
+/* ===== ФОТОГАЛЕРЕЯ ===== */
+.gallery-section {
+  position: relative; width: 1440px; height: 1290px; margin: 80px auto 0;
+}
+.gallery-section .gallery-img { position: absolute; border-radius: 10px; object-fit: cover; }
+
+/* Позиции картинок (без изменений) */
+.gallery-img-1 { width: 500px; height: 250px; left: 0; top: 0; }
+.gallery-img-2 { width: 500px; height: 250px; left: 280px; top: 940px; }
+.gallery-img-3 { width: 350px; height: 250px; left: 560px; top: 72px; }
+.gallery-img-4 { width: 230px; height: 350px; left: 1210px; top: 820px; }
+.gallery-img-5 { width: 220px; height: 350px; left: 0; top: 940px; }
+.gallery-img-6 { width: 410px; height: 250px; left: 1030px; top: 0; }
+.gallery-img-7 { width: 250px; height: 400px; left: 840px; top: 880px; }
+.gallery-img-8 { width: 220px; height: 570px; left: 0; top: 310px; }
+.gallery-img-9 { width: 250px; height: 450px; left: 1190px; top: 310px; }
+
+.gallery-center {
+  position: absolute; width: 756px; height: 303px; left: 327px; top: 443px;
+  display: flex; flex-direction: column; align-items: center; gap: 40px; z-index: 2;
+}
+
+.gallery-center .gallery-title {
+  font-family: 'Playfair Display', serif; font-weight: 500; font-size: 90px;
+  line-height: 95px; text-align: center; color: #847F57; width: 100%;
+}
+
+.gallery-center .gallery-desc {
+  font-family: 'Montserrat', sans-serif; font-weight: 400; font-size: 20px;
+  line-height: 24px; text-align: center; color: #494949; max-width: 674px; margin: 0 auto;
+}
+
+.gallery-center .btn-gallery {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 14px 40px; border: 1px solid #9B5026; border-radius: 100px;
+  background: transparent; color: #494949; font-family: 'Montserrat', sans-serif;
+  font-weight: 400; font-size: 20px; line-height: 24px; text-decoration: none;
+  transition: background 0.3s, color 0.3s;
+}
+.gallery-center .btn-gallery:hover { background: #9B5026; color: #F7F0E6; }
+
+/* ===== СЛОГАН ===== */
+.slogan { text-align: center; padding: 60px 0 80px; }
+.slogan h2 { font-family: 'Playfair Display', serif; font-size: 44px; line-height: 110%; color: var(--text-dark); max-width: 734px; margin: 0 auto; }
+
+/* ===== НАШИ ДОМИКИ ===== */
+.houses { padding: 80px 0; }
+.section-title { font-family: 'Playfair Display', serif; font-size: 90px; line-height: 95px; color: var(--gold); text-align: center; margin-bottom: 60px; }
+.houses-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(500px, 1fr)); gap: 20px; }
+.house-card { position: relative; border-radius: var(--radius); overflow: hidden; height: 500px; background: #333; display: flex; flex-direction: column; justify-content: flex-end; padding: 32px; color: white; }
+.house-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+.house-card .overlay { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.8) 100%); z-index: 1; }
+.house-card .content { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 24px; }
+.house-card .dots { display: flex; gap: 6px; }
+.house-card .dots span { width: 8px; height: 8px; border-radius: 50%; background: rgba(255, 255, 255, 0.5); }
+.house-card .dots span:first-child { background: white; }
+.house-card h3 { font-size: 24px; font-weight: 600; }
+.house-card p { font-size: 18px; text-align: center; }
+.house-card .btn { width: 100%; max-width: 546px; }
+.price-tag { position: absolute; top: 0; right: 0; z-index: 2; background: var(--accent); color: white; padding: 28px 10px 10px; border-radius: 0 0 0 20px; font-size: 16px; text-align: center; width: 94px; height: 128px; display: flex; flex-direction: column; justify-content: center; align-items: center; clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%); }
+
+/* ===== ИНТЕРЕСНОЕ РЯДОМ ===== */
+.nearby { padding: 80px 0; }
+.nearby-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; }
+.nearby-card { background: var(--dark); border-radius: 20px; padding: 40px 20px; color: white; display: flex; flex-direction: column; gap: 20px; align-items: center; text-align: center; }
+.nearby-card .number { font-family: 'Playfair Display', serif; font-size: 40px; color: var(--text-light); }
+.nearby-card h3 { font-family: 'Playfair Display', serif; font-size: 40px; line-height: 42px; color: var(--text-light); }
+.nearby-card .image { width: 100%; height: 220px; background: #555; border-radius: 10px; object-fit: cover; }
+.nearby-card p { font-size: 18px; line-height: 22px; color: var(--text-light); max-width: 360px; }
+.nearby-card .btn { width: 100%; max-width: 360px; }
+.nearby-card.gold { background: var(--gold); }
+.nearby-more { display: flex; justify-content: center; margin-top: 60px; }
+.nearby-more .btn { border: 1px solid var(--accent); background: transparent; color: var(--text-dark); display: inline-flex; align-items: center; gap: 12px; }
+
+/* ===== FAQ ===== */
+.faq { padding: 80px 0; }
+.faq h2 { font-family: 'Playfair Display', serif; font-size: 90px; line-height: 95px; color: var(--gold); text-align: center; margin-bottom: 60px; }
+.faq-list { max-width: 1240px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
+.faq-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 32px; border-radius: 10px; font-size: 32px; font-weight: 500; color: var(--text-light); cursor: pointer; }
+.faq-item.dark { background: var(--dark); }
+.faq-item.gold { background: var(--gold); }
+.faq-item .arrow { width: 24px; height: 12px; background: white; clip-path: polygon(0 0, 100% 0, 50% 100%); }
+
+/* ===== FOOTER ===== */
+.footer { background: var(--bg-beige); padding: 100px 20px 40px; }
+.footer-inner { max-width: 1440px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 60px; justify-content: space-between; }
+.footer-col { flex: 1 1 200px; }
+.footer-col h4 { font-size: 20px; font-weight: 600; color: var(--gold); margin-bottom: 14px; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-col ul li a { text-decoration: none; color: var(--text-dark); font-size: 18px; }
+.footer-logo { display: flex; align-items: flex-end; gap: 16px; margin-bottom: 20px; font-family: 'Playfair Display', serif; font-size: 32px; color: var(--gold); }
+.footer-logo .icon { width: 70px; height: 70px; background: var(--gold); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: white; font-size: 40px; }
+.footer-contacts { display: flex; flex-direction: column; gap: 14px; margin-bottom: 20px; }
+.footer-contacts div { font-size: 18px; color: var(--text-dark); text-align: center; }
+.footer-socials { display: flex; gap: 10px; }
+.footer-socials a { width: 40px; height: 40px; border-radius: 50%; background: rgba(73, 73, 73, 0.15); display: flex; align-items: center; justify-content: center; color: var(--text-dark); text-decoration: none; font-size: 18px; }
+.footer-bottom { max-width: 1440px; margin: 40px auto 0; border-top: 1px solid #ccc; padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; font-size: 14px; color: var(--text-dark); }
+.footer-bottom .legal { display: flex; gap: 40px; }
+.footer-bottom .legal a { color: var(--text-dark); text-decoration: none; }
+.footer-bottom .payments { display: flex; gap: 10px; align-items: center; }
+
+/* ===== Адаптивность ===== */
+@media (max-width: 1450px) {
+  .territory-wrapper { width: 100%; height: auto; margin: 40px 0; display: flex; flex-direction: column; align-items: center; }
+  .territory-title-block { position: static; width: 100%; height: auto; text-align: center; margin-bottom: 40px; }
+  .territory-title-block h2 { height: auto; justify-content: center; }
+  .territory-item, .territory-more { position: static; width: 100%; max-width: 400px; height: 350px; margin: 0 auto 20px; }
+  .territory-more .border-rect { width: calc(100% - 20px); height: calc(100% - 20px); left: 10px; top: 10px; }
+  .gallery-section { width: 100%; height: auto; display: flex; flex-direction: column; align-items: center; padding: 40px 0; position: relative; }
+  .gallery-section .gallery-img { position: static; width: 100%; max-width: 500px; height: 250px; margin: 10px auto; }
+  .gallery-center { position: static; width: 100%; height: auto; padding: 40px 20px; gap: 20px; }
+  .gallery-center .gallery-title { font-size: 60px; line-height: 65px; }
+  .gallery-center .gallery-desc { width: 100%; max-width: 100%; }
+}
+
+@media (max-width: 1024px) {
+  .header { flex-wrap: wrap; gap: 10px; border-radius: 20px; padding: 15px 20px; }
+  .header nav { order: 3; width: 100%; justify-content: center; flex-wrap: wrap; gap: 15px; }
+  .header .actions { margin-left: auto; }
+  .hero-title { font-size: 50px; line-height: 55px; }
+  .section-title { font-size: 50px; line-height: 55px; }
+  .about-title { font-size: 50px; line-height: 55px; }
+  .about { flex-direction: column; padding: 40px 20px; }
+  .about-image { width: 100%; height: 400px; margin-top: 0; border-radius: 0 0 20px 0; }
+  .about-content { padding: 40px 0 0 0; width: 100%; }
+  .quote-inner { flex-direction: column; }
+  .quote-text { padding: 40px 20px; width: 100%; }
+  .quote-text .quote-mark-end { align-self: flex-end; }
+  .quote-image { width: 100%; height: 400px; border-radius: 0 0 0 20px; }
+}
+
+@media (max-width: 600px) {
+  .header .logo-text { font-size: 18px; }
+  .header nav a { font-size: 14px; }
+  .header .phone { display: none; }
+  .hero-title { font-size: 36px; line-height: 40px; }
+  .hero-form .field { min-width: 140px; padding: 10px 20px; }
+  .hero-form .btn { width: 100%; }
+  .about-image { height: 300px; }
+  .quote-image { height: 300px; }
+  .footer-inner { flex-direction: column; gap: 40px; }
+  .footer-bottom { flex-direction: column; gap: 20px; text-align: center; }
+  .about-actions { flex-direction: column; width: 100%; }
+  .about-actions .btn { width: 100%; justify-content: center; }
+  .territory-item, .territory-more { height: 300px; }
+}
