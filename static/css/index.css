@@ -12,7 +12,7 @@ body {
   color: #494949;
   line-height: 1.4;
   background-color: #F7F0E6;
-  /* Фон из корневой папки backgrounds/ — поднимаемся на два уровня */
+  /* Фон backgrounds/ — из static/css/ поднимаемся на один уровень до static/ и на уровень выше */
   background-image: url('../../backgrounds/1.svg');
   background-repeat: no-repeat;
   background-position: center top;
@@ -154,7 +154,6 @@ body {
 .hero-bg {
   position: absolute;
   inset: 0;
-  /* Путь к картинке из папки static/images/hero — поднимаемся на один уровень от css */
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url('../images/hero/hero-background.jpg') center/cover no-repeat;
   filter: blur(1.5px);
@@ -224,7 +223,7 @@ body {
 .about { display: flex; align-items: flex-start; padding: 0; width: 100%; }
 .about-image {
   width: 700px; height: 1000px; flex-shrink: 0;
-  background: url('../images/about_us/about-us2.png') center/cover no-repeat;
+background: url('../images/about_us/about-us2.png') center/cover no-repeat;
   border-radius: 0 0 20px 0; margin-top: -20px; margin-left: 0;
 }
 .about-content { flex: 1; padding: 80px 120px 0 100px; display: flex; flex-direction: column; gap: 40px; }
