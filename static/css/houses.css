@@ -1,14 +1,6 @@
 /* Дополнительные стили для страницы домиков */
-
-/* Увеличиваем отступы между секциями */
-.section {
-  margin-bottom: 100px;
-}
-
-/* ОТСТУП СВЕРХУ ДЛЯ ХЕДЕРА */
-.houses-section {
-  padding-top: 200px;
-}
+.section { margin-bottom: 100px; }
+.houses-section { padding-top: 200px; }
 
 .section-header {
   text-align: center;
@@ -18,14 +10,12 @@
   align-items: center;
   gap: 20px;
 }
-
 .section-title {
   font-family: 'Etude Noire', serif;
   font-size: clamp(40px, 6vw, 90px);
   line-height: 1.1;
   color: var(--gold);
 }
-
 .section-subtitle {
   font-size: 20px;
   line-height: 24px;
@@ -42,7 +32,6 @@
   margin-bottom: 40px;
   flex-wrap: wrap;
 }
-
 .search-input-wrapper {
   position: relative;
   display: flex;
@@ -52,12 +41,7 @@
   padding: 0 20px 0 16px;
   height: 48px;
 }
-
-.search-input-wrapper .search-icon {
-  flex-shrink: 0;
-  margin-right: 10px;
-}
-
+.search-input-wrapper .search-icon { flex-shrink: 0; margin-right: 10px; }
 .search-input {
   background: transparent;
   border: none;
@@ -67,11 +51,7 @@
   outline: none;
   width: 160px;
 }
-
-.search-btn {
-  height: 48px;
-  padding: 0 32px;
-}
+.search-btn { height: 48px; padding: 0 32px; }
 
 /* Карточки домов */
 .house-card {
@@ -85,7 +65,6 @@
   justify-content: flex-end;
   color: white;
 }
-
 .house-card img {
   position: absolute;
   inset: 0;
@@ -94,15 +73,12 @@
   object-fit: cover;
   z-index: 0;
 }
-
 .house-card .overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.75) 100%);
   z-index: 1;
 }
-
-/* Ценник — теперь используем ticket.svg как фон */
 .house-card .price-tag {
   position: absolute;
   top: 0;
@@ -124,7 +100,6 @@
   align-items: center;
   font-family: 'Montserrat', sans-serif;
 }
-
 .house-card .content {
   position: relative;
   z-index: 2;
@@ -134,45 +109,24 @@
   padding: 24px;
   width: 100%;
 }
-
 .house-card .content-row {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   width: 100%;
 }
-
 .house-card .left-col {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 4px;
 }
-
-.house-card .dots {
-  display: flex;
-  gap: 6px;
-  margin-bottom: 6px;
-}
-
+.house-card .dots { display: flex; gap: 6px; margin-bottom: 6px; }
 .house-card .dots span {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.5);
+  width: 8px; height: 8px; border-radius: 50%; background: rgba(255, 255, 255, 0.5);
 }
-
-.house-card .dots span:first-child {
-  background: white;
-}
-
-.house-card .left-col h3 {
-  font-size: 28px;
-  font-weight: 600;
-  margin: 0;
-  color: white;
-}
-
+.house-card .dots span:first-child { background: white; }
+.house-card .left-col h3 { font-size: 28px; font-weight: 600; margin: 0; color: white; }
 .house-card .left-col p {
   font-family: 'Montserrat', sans-serif;
   font-size: 16px;
@@ -180,767 +134,360 @@
   margin: 0;
   color: rgba(255, 255, 255, 0.9);
 }
-
 .house-card .btn-detail {
-  border: 1px solid white;
-  color: white;
-  background: transparent;
-  border-radius: 100px;
-  padding: 6px 20px;
-  font-size: 14px;
-  font-family: 'Montserrat', sans-serif;
-  transition: background 0.3s, color 0.3s;
-  text-decoration: none;
+  border: 1px solid white; color: white; background: transparent;
+  border-radius: 100px; padding: 6px 20px; font-size: 14px;
+  font-family: 'Montserrat', sans-serif; transition: 0.3s; text-decoration: none;
 }
-
-.house-card .btn-detail:hover {
-  background: white;
-  color: var(--text-dark);
-}
-
+.house-card .btn-detail:hover { background: white; color: var(--text-dark); }
 .house-card .btn-book-house {
-  width: 100%;
-  background: var(--gold);
-  color: white;
-  border-radius: 100px;
-  padding: 12px 20px;
-  font-size: 18px;
-  font-family: 'Montserrat', sans-serif;
-  transition: background 0.3s;
-  border: none;
-  cursor: pointer;
+  width: 100%; background: var(--gold); color: white; border-radius: 100px;
+  padding: 12px 20px; font-size: 18px; font-family: 'Montserrat', sans-serif;
+  transition: 0.3s; border: none; cursor: pointer;
 }
+.house-card .btn-book-house:hover { background: #6f6a4b; }
 
-.house-card .btn-book-house:hover {
-  background: #6f6a4b;
-}
-
-/* Сетка для дополнительных услуг (маленькие карточки) */
+/* Доп услуги */
 .services-small-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  margin-top: 20px;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 20px;
 }
-
 .service-small {
-  position: relative;
-  border-radius: 20px;
-  overflow: hidden;
-  height: 295px;
-  background: #d9d9d9;
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  padding: 20px;
-  color: white;
+  position: relative; border-radius: 20px; overflow: hidden; height: 295px;
+  background: #d9d9d9; background-size: cover; background-position: center;
+  display: flex; align-items: flex-end; justify-content: center; padding: 20px; color: white;
 }
-
 .service-small h3 {
-  position: relative;
-  z-index: 2;
-  font-family: 'Etude Noire', serif;
-  font-size: 24px;
-  text-align: center;
+  position: relative; z-index: 2; font-family: 'Etude Noire', serif;
+  font-size: 24px; text-align: center;
 }
-
 .service-small::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.8) 100%);
-  z-index: 1;
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.8) 100%); z-index: 1;
 }
 
-/* Хедер (строго по Figma) */
+/* Хедер */
 .houses-header {
-  position: absolute;
-  top: 32px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 1260px;
-  height: 86.91px;
-  background: #847F57;
-  backdrop-filter: blur(10px);
-  border-radius: 100px;
-  padding: 20px 32px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 100;
-  box-sizing: border-box;
+  position: absolute; top: 32px; left: 50%; transform: translateX(-50%);
+  width: 1260px; height: 86.91px; background: #847F57; backdrop-filter: blur(10px);
+  border-radius: 100px; padding: 20px 32px; display: flex; justify-content: space-between;
+  align-items: center; z-index: 100; box-sizing: border-box;
 }
-
-.houses-header .logo-group {
-  display: flex;
-  align-items: flex-end;
-}
-
-.houses-header .header-logo {
-  width: 46.91px;
-  height: 46.91px;
-  display: block;
-}
-
+.houses-header .logo-group { display: flex; align-items: flex-end; }
+.houses-header .header-logo { width: 46.91px; height: 46.91px; display: block; }
 .houses-header .logo-text {
-  font-family: 'Etude Noire', serif;
-  font-size: 21.7392px;
-  line-height: 90%;
-  text-align: center;
-  color: #F7F0E6;
-  margin-bottom: 2px;
+  font-family: 'Etude Noire', serif; font-size: 21.7392px; line-height: 90%;
+  text-align: center; color: #F7F0E6; margin-bottom: 2px;
 }
-
-.houses-header nav {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
+.houses-header nav { display: flex; align-items: center; gap: 20px; }
 .houses-header nav a {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 20px;
-  color: #F7F0E6;
-  text-decoration: none;
+  font-family: 'Montserrat', sans-serif; font-weight: 400; font-size: 16px;
+  line-height: 20px; color: #F7F0E6; text-decoration: none;
 }
-
-.houses-header .header-right {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-}
-
-.houses-header .paw-icon {
-  width: 30px;
-  height: 28px;
-  fill: #F7F0E6;
-}
-
+.houses-header .header-right { display: flex; align-items: center; gap: 24px; }
+.houses-header .paw-icon { width: 30px; height: 28px; fill: #F7F0E6; }
 .houses-header .phone {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 115%;
-  letter-spacing: -0.02em;
-  color: #F7F0E6;
+  font-family: 'Montserrat', sans-serif; font-weight: 400; font-size: 16px;
+  line-height: 115%; letter-spacing: -0.02em; color: #F7F0E6;
 }
-
 .houses-header .btn-book-header {
-  background: #9B5026;
-  color: #F7F0E6;
-  padding: 10px 20px;
-  border-radius: 100px;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 400;
-  font-size: 16px;
-  text-decoration: none;
-  white-space: nowrap;
-  transition: background 0.3s;
-  border: none;
-  cursor: pointer;
+  background: #9B5026; color: #F7F0E6; padding: 10px 20px; border-radius: 100px;
+  font-family: 'Montserrat', sans-serif; font-weight: 400; font-size: 16px;
+  text-decoration: none; white-space: nowrap; transition: 0.3s; border: none; cursor: pointer;
 }
+.houses-header .btn-book-header:hover { background: #7a3f1e; }
 
-.houses-header .btn-book-header:hover {
-  background: #7a3f1e;
-}
-
-/* Адаптивность хедера */
 @media (max-width: 1300px) {
-  .houses-header {
-    width: calc(100% - 40px);
-    padding: 15px 20px;
-    height: auto;
-    flex-wrap: wrap;
-    gap: 15px;
-    border-radius: 20px;
-    top: 16px;
-  }
-  .houses-header nav {
-    order: 3;
-    width: 100%;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 15px;
-  }
-  .houses-header .header-right {
-    margin-left: auto;
-  }
+  .houses-header { width: calc(100% - 40px); padding: 15px 20px; height: auto; flex-wrap: wrap; gap: 15px; border-radius: 20px; top: 16px; }
+  .houses-header nav { order: 3; width: 100%; justify-content: center; flex-wrap: wrap; gap: 15px; }
+  .houses-header .header-right { margin-left: auto; }
 }
-
 @media (max-width: 600px) {
-  .houses-header .logo-text {
-    font-size: 18px;
-  }
-  .houses-header nav a {
-    font-size: 14px;
-  }
-  .houses-header .phone {
-    display: none;
-  }
+  .houses-header .logo-text { font-size: 18px; }
+  .houses-header nav a { font-size: 14px; }
+  .houses-header .phone { display: none; }
 }
 
-/* ================= ОБНОВЛЁННЫЙ КАЛЕНДАРЬ ================= */
+/* ================= МОДАЛЬНОЕ ОКНО И КАЛЕНДАРЬ (ИСПРАВЛЕНО) ================= */
 .modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(4px);
-  z-index: 1000;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  padding: 40px 20px;
+  position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+  background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(4px); z-index: 1000;
+  display: none; justify-content: center; align-items: center; padding: 40px 20px;
 }
-
 .modal-content {
-  position: relative;
-  width: 100%;
-  max-width: 1240px;
-  background: #F7F0E6;
-  border-radius: 40px;
-  padding: 40px;
-  max-height: 90vh;
-  overflow-y: auto;
+  position: relative; width: 100%; max-width: 1240px; background: #F7F0E6;
+  border-radius: 40px; padding: 40px; max-height: 90vh; overflow-y: auto;
   box-shadow: 0 20px 60px rgba(0,0,0,0.3);
 }
-
 .modal-close-btn {
-  position: absolute;
-  top: 32px;
-  right: 32px;
-  width: 50px;
-  height: 50px;
-  border-radius: 14px;
-  background: rgba(132, 127, 87, 0.15);
-  border: none;
-  color: #847F57;
-  font-size: 28px;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: absolute; top: 32px; right: 32px; width: 50px; height: 50px;
+  border-radius: 14px; background: rgba(132, 127, 87, 0.15); border: none;
+  color: #847F57; font-size: 28px; cursor: pointer; display: flex; justify-content: center; align-items: center;
 }
-
-.modal-close-btn:hover {
-  background: rgba(132, 127, 87, 0.3);
-}
-
+.modal-close-btn:hover { background: rgba(132, 127, 87, 0.3); }
 .modal-title {
-  font-family: 'Etude Noire', serif;
-  font-size: 64px;
-  color: var(--gold);
-  text-align: center;
-  margin-bottom: 32px;
-  font-weight: 500;
+  font-family: 'Etude Noire', serif; font-size: 64px; color: var(--gold);
+  text-align: center; margin-bottom: 32px; font-weight: 500;
 }
-
-.gallery-grid {
-  display: flex;
-  gap: 20px;
-  height: 344px;
-}
-
-.gallery-main {
-  flex: 0 0 574px;
-  height: 100%;
-  background: #D9D9D9;
-  border-radius: 20px;
-  background-size: cover;
-  background-position: center;
-}
-
-.gallery-side {
-  flex: 1;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
-
-.gallery-item {
-  background: #D9D9D9;
-  border-radius: 20px;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  position: relative;
-}
-
+.gallery-grid { display: flex; gap: 20px; height: 344px; }
+.gallery-main { flex: 0 0 574px; height: 100%; background: #D9D9D9; border-radius: 20px; background-size: cover; background-position: center; }
+.gallery-side { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.gallery-item { background: #D9D9D9; border-radius: 20px; width: 100%; height: 100%; background-size: cover; background-position: center; position: relative; }
 .gallery-item-overlay {
-  position: absolute;
-  inset: 0;
-  border-radius: 20px;
-  background: rgba(0,0,0,0.4);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: #fff;
-  gap: 6px;
-  cursor: pointer;
+  position: absolute; inset: 0; border-radius: 20px; background: rgba(0,0,0,0.4);
+  display: flex; flex-direction: column; justify-content: center; align-items: center; color: #fff; gap: 6px; cursor: pointer;
 }
-
-.gallery-item-overlay span {
-  font-size: 20px;
-}
-
-.specs-row {
-  display: flex;
-  gap: 20px;
-  margin-top: 40px;
-}
-
-.spec-box {
-  flex: 1;
-  background: rgba(132, 127, 87, 0.08);
-  border-radius: 10px;
-  padding: 20px 32px;
-}
-
-.spec-box h4 {
-  font-weight: 600;
-  font-size: 20px;
-  margin-bottom: 20px;
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-
-.spec-item {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  font-size: 20px;
-  margin-bottom: 10px;
-}
-
-.spec-item:last-child {
-  margin-bottom: 0;
-}
-
-.desc-amenities-row {
-  display: flex;
-  gap: 60px;
-  margin-top: 40px;
-}
-
-.desc-block {
-  flex: 1;
-}
-
-.desc-block h3 {
-  font-family: 'Etude Noire', serif;
-  font-size: 32px;
-  color: var(--accent);
-  margin-bottom: 20px;
-}
-
-.desc-block p {
-  font-size: 20px;
-  line-height: 24px;
-}
-
-.amenities-block {
-  flex: 1;
-}
-
-.amenities-block h3 {
-  font-family: 'Etude Noire', serif;
-  font-size: 32px;
-  color: var(--accent);
-  margin-bottom: 20px;
-}
-
-.amenities-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
-
-.amenity-item {
-  background: rgba(132, 127, 87, 0.08);
-  padding: 8px 20px;
-  border-radius: 10px;
-  font-size: 20px;
-}
+.gallery-item-overlay span { font-size: 20px; }
+.specs-row { display: flex; gap: 20px; margin-top: 40px; }
+.spec-box { flex: 1; background: rgba(132, 127, 87, 0.08); border-radius: 10px; padding: 20px 32px; }
+.spec-box h4 { font-weight: 600; font-size: 20px; margin-bottom: 20px; display: flex; gap: 10px; align-items: center; }
+.spec-item { display: flex; gap: 10px; align-items: center; font-size: 20px; margin-bottom: 10px; }
+.spec-item:last-child { margin-bottom: 0; }
+.desc-amenities-row { display: flex; gap: 60px; margin-top: 40px; }
+.desc-block { flex: 1; }
+.desc-block h3 { font-family: 'Etude Noire', serif; font-size: 32px; color: var(--accent); margin-bottom: 20px; }
+.desc-block p { font-size: 20px; line-height: 24px; }
+.amenities-block { flex: 1; }
+.amenities-block h3 { font-family: 'Etude Noire', serif; font-size: 32px; color: var(--accent); margin-bottom: 20px; }
+.amenities-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.amenity-item { background: rgba(132, 127, 87, 0.08); padding: 8px 20px; border-radius: 10px; font-size: 20px; }
 
 .details-table {
-  background: rgba(132, 127, 87, 0.08);
-  border-radius: 10px;
-  padding: 20px 32px;
-  display: flex;
-  gap: 70px;
-  margin-top: 40px;
-  align-items: flex-start;
+  background: rgba(132, 127, 87, 0.08); border-radius: 10px; padding: 20px 32px;
+  display: flex; gap: 70px; margin-top: 40px; align-items: flex-start;
 }
-
-.detail-col {
-  flex: 1;
-}
-
-.detail-col h4 {
-  font-weight: 600;
-  font-size: 20px;
-  margin-bottom: 16px;
-}
-
-.detail-col ul {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.detail-col ul li {
-  font-size: 20px;
-}
-
-.detail-col ul li.muted {
-  opacity: 0.4;
-}
-
-.detail-col ul li.semi-muted {
-  opacity: 0.7;
-}
-
+.detail-col { flex: 1; }
+.detail-col h4 { font-weight: 600; font-size: 20px; margin-bottom: 16px; }
+.detail-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.detail-col ul li { font-size: 20px; }
+.detail-col ul li.muted { opacity: 0.4; }
+.detail-col ul li.semi-muted { opacity: 0.7; }
 .details-more-btn {
-  align-self: flex-end;
-  margin-top: 20px;
-  border: 1px solid var(--accent);
-  border-radius: 100px;
-  padding: 10px 32px;
-  font-size: 16px;
-  cursor: pointer;
-  background: transparent;
+  align-self: flex-end; margin-top: 20px; border: 1px solid var(--accent);
+  border-radius: 100px; padding: 10px 32px; font-size: 16px; cursor: pointer; background: transparent;
 }
 
-.booking-widget {
-  display: flex;
-  gap: 20px;
-  margin-top: 40px;
-}
+.booking-widget { display: flex; gap: 20px; margin-top: 40px; }
+.widget-box { flex: 1; background: rgba(132, 127, 87, 0.08); border-radius: 10px; padding: 20px 40px; display: flex; align-items: center; justify-content: space-between; }
+.widget-box label { display: flex; align-items: center; gap: 12px; font-size: 20px; cursor: pointer; }
+.date-display { font-weight: 500; color: var(--text-dark); font-size: 18px; }
+.booking-details { display: flex; gap: 20px; margin-top: 20px; }
 
-.widget-box {
-  flex: 1;
-  background: rgba(132, 127, 87, 0.08);
-  border-radius: 10px;
-  padding: 20px 40px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.widget-box label {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 20px;
-  cursor: pointer;
-}
-
-.date-display {
-  font-weight: 500;
-  color: var(--text-dark);
-  font-size: 18px;
-}
-
-.booking-details {
-  display: flex;
-  gap: 20px;
-  margin-top: 20px;
-}
-
-/* ================== ОБНОВЛЕНИЯ КАЛЕНДАРЯ ================== */
+/* ================== ИСПРАВЛЕННЫЙ КАЛЕНДАРЬ ================== */
 .calendar-wrapper {
   display: flex;
-  align-items: center;
-  gap: 10px;
-  position: relative;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 24px 8px; /* уменьшили боковые отступы для стрелок */
+  gap: 0;
+  width: 808px;
+  height: 488px;
   background: #FFFFFF;
   border-radius: 16px;
-  padding: 24px;
-  flex: 1;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  position: relative;
 }
 
 .calendar-month {
-  flex: 1;
-  min-width: 0;
-}
-
-.calendar-nav-btn {
-  flex-shrink: 0;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  border: 1px solid #E0E0E0;
-  background: #FFFFFF;
-  color: #667085;
-  font-size: 24px;
-  cursor: pointer;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: all 0.2s;
-  margin: 0 5px;
-}
-
-.calendar-nav-btn:hover {
-  background: #f0f0f0;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 16px;
+  gap: 8px;
+  width: 368px;
+  height: 440px;
+  background: #FFFFFF;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
 }
 
 .calendar-header {
-  text-align: center;
-  font-size: 18px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+  gap: 10px;
+  width: 100%;
+  height: 40px;
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+.calendar-header span {
+  font-family: 'Montserrat';
+  font-style: normal;
   font-weight: 500;
-  margin-bottom: 16px;
-  color: #101828;
-}
-
-.calendar-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 4px;
-}
-
-.calendar-day-name {
+  font-size: 20px;
+  line-height: 150%;
+  display: flex;
+  align-items: center;
   text-align: center;
-  font-size: 14px;
-  color: #667085;
-  padding: 8px 0;
+  color: #494949;
+  flex: none;
+  order: 0;
+  flex-grow: 1;
 }
 
-.calendar-day {
-  text-align: center;
-  padding: 8px 0;
-  font-size: 14px;
-  border-radius: 0;
-  cursor: pointer;
+.calendar-nav-btn {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  gap: 10px;
   width: 40px;
   height: 40px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
-  color: #101828;
-}
-
-.calendar-day.muted {
-  color: #D0D5DD;
-  cursor: default;
-}
-
-/* Выделение диапазона (прямоугольник) */
-.calendar-day.range {
-  background: #FFF0E4; /* Светло-персиковый */
-  border-radius: 0;
-}
-
-/* Активная дата (круг) */
-.calendar-day.active {
-  background: #FFCDA6; /* Персиковый */
-  border-radius: 50%;
-  color: #101828;
-}
-
-/* Красная точка для сегодняшнего дня */
-.calendar-day.today::after {
-  content: '';
-  display: block;
-  width: 4px;
-  height: 4px;
-  background: #E75C5C;
-  border-radius: 50%;
-  margin: 2px auto 0;
-}
-
-/* ========================================================= */
-.guests-wrapper {
-  flex: 1;
   background: #FFFFFF;
-  border-radius: 16px;
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.guests-wrapper h4 {
-  font-size: 20px;
-  font-weight: 500;
-  text-align: center;
-}
-
-.guest-counter-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 0;
-}
-
-.guest-counter-row .label {
-  display: flex;
-  flex-direction: column;
-}
-
-.guest-counter-row .label span:first-child {
-  font-size: 20px;
-}
-
-.guest-counter-row .label span:last-child {
-  font-size: 14px;
-  color: rgba(73,73,73,0.5);
-}
-
-.counter-controls {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.counter-btn {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background: #FFF0E4;
-  border: 1px solid #FFCDA6;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 20px;
+  border: 1px solid #D0D5DD;
+  border-radius: 9999px;
   cursor: pointer;
+  color: #D0D5DD;
+  font-size: 18px;
+  transition: all 0.2s;
+  flex-shrink: 0;
+  margin: 16px 12px 0 12px; /* сдвинули стрелки внутрь (ближе к месяцам) */
+}
+.calendar-nav-btn:hover { background: #f0f0f0; color: #494949; }
+
+/* СЕТКА - ЖЁСТКО ФИКСИРОВАННАЯ */
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 48px);
+  grid-template-rows: repeat(6, 48px);
+  gap: 0;
+  width: 336px;
+  height: 308px;
+  flex: none;
+  order: 2;
+  flex-grow: 0;
+}
+.calendar-day-name {
+  display: flex; justify-content: center; align-items: center;
+  width: 48px; height: 44px; margin: 0 auto;
+  font-family: 'Montserrat'; font-weight: 400; font-size: 14px; line-height: 150%;
   color: #494949;
 }
 
-.counter-btn:hover {
+/* ЯЧЕЙКА ДНЯ - БЕЗ СМЕЩЕНИЙ */
+.calendar-day {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  position: relative;
+  cursor: pointer;
+}
+.calendar-day.muted { cursor: default; }
+
+/* ВНУТРЕННИЙ КРУГ (идеально центрирован) */
+.calendar-day .content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+.calendar-day .data {
+  font-family: 'Montserrat'; font-weight: 400; font-size: 14px; line-height: 150%;
+  color: #667085;
+}
+.calendar-day.muted .data { color: #D0D5DD; }
+
+/* КРАСНАЯ ТОЧКА "СЕГОДНЯ" (теперь видна всегда) */
+.calendar-day.today .content::after {
+  content: '';
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #F43A01;
+  border-radius: 50%;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10; /* Всегда поверх всего */
+}
+
+/* ВЫДЕЛЕНИЕ ДИАПАЗОНА (сплошная полоса 48px) */
+.calendar-day.range-start {
+  background: #FFF0E4;
+  border-radius: 999px 0px 0px 999px;
+}
+.calendar-day.range-end {
+  background: #FFF0E4;
+  border-radius: 0px 999px 999px 0px;
+}
+.calendar-day.range-inner { background: #FFF0E4; border-radius: 0px; }
+
+/* КРУГ НА КОНЦАХ ДИАПАЗОНА И АКТИВНЫЙ ДЕНЬ */
+.calendar-day.range-start .content,
+.calendar-day.range-end .content,
+.calendar-day.active .content {
   background: #FFCDA6;
 }
+.calendar-day.range-inner .content { background: transparent; }
+.calendar-day.range-start .data,
+.calendar-day.range-end .data,
+.calendar-day.active .data { color: #494949; }
 
-.counter-value {
-  font-size: 20px;
-  font-weight: 500;
-  min-width: 20px;
-  text-align: center;
+/* ========================================================= */
+
+.guests-wrapper { flex: 1; background: #FFFFFF; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 20px; }
+.guests-wrapper h4 { font-size: 20px; font-weight: 500; text-align: center; }
+.guest-counter-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; }
+.guest-counter-row .label { display: flex; flex-direction: column; }
+.guest-counter-row .label span:first-child { font-size: 20px; }
+.guest-counter-row .label span:last-child { font-size: 14px; color: rgba(73,73,73,0.5); }
+.counter-controls { display: flex; align-items: center; gap: 16px; }
+.counter-btn {
+  width: 30px; height: 30px; border-radius: 50%; background: #FFF0E4;
+  border: 1px solid #FFCDA6; display: flex; justify-content: center; align-items: center;
+  font-size: 20px; cursor: pointer; color: #494949;
 }
+.counter-btn:hover { background: #FFCDA6; }
+.counter-value { font-size: 20px; font-weight: 500; min-width: 20px; text-align: center; }
 
-.modal-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 40px;
-}
+.modal-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 40px; }
+.total-price { display: flex; flex-direction: column; align-items: flex-end; gap: 5px; }
+.total-price .details { display: flex; gap: 20px; font-size: 16px; align-items: center; }
+.total-price .amount { font-size: 24px; font-weight: 600; }
+.btn-confirm-booking { padding: 20px 40px; font-size: 24px; font-weight: 500; width: 340px; }
 
-.total-price {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 5px;
-}
-
-.total-price .details {
-  display: flex;
-  gap: 20px;
-  font-size: 16px;
-  align-items: center;
-}
-
-.total-price .amount {
-  font-size: 24px;
-  font-weight: 600;
-}
-
-.btn-confirm-booking {
-  padding: 20px 40px;
-  font-size: 24px;
-  font-weight: 500;
-  width: 340px;
-}
-
-/* Адаптивность модального окна */
 @media (max-width: 1024px) {
-  .gallery-main {
-    flex: 1;
-    height: 250px;
-  }
-  .gallery-side {
-    display: none;
-  }
-  .desc-amenities-row {
-    flex-direction: column;
-    gap: 30px;
-  }
-  .details-table {
-    flex-direction: column;
-    gap: 20px;
-  }
-  .booking-details {
-    flex-direction: column;
-  }
-  .modal-title {
-    font-size: 40px;
-  }
-  .services-small-grid {
-    grid-template-columns: 1fr 1fr;
-  }
+  .gallery-main { flex: 1; height: 250px; }
+  .gallery-side { display: none; }
+  .desc-amenities-row { flex-direction: column; gap: 30px; }
+  .details-table { flex-direction: column; gap: 20px; }
+  .booking-details { flex-direction: column; }
+  .modal-title { font-size: 40px; }
+  .services-small-grid { grid-template-columns: 1fr 1fr; }
+  .calendar-wrapper { width: 100%; height: auto; flex-wrap: wrap; padding: 16px 8px; }
+  .calendar-month { width: 100%; height: auto; padding: 8px; margin: 0; }
+  .calendar-grid { width: 100%; height: auto; grid-template-columns: repeat(7, 1fr); grid-template-rows: repeat(6, 40px); }
+  .calendar-nav-btn { display: none; }
 }
-
 @media (max-width: 600px) {
-  .specs-row {
-    flex-direction: column;
-  }
-  .booking-widget {
-    flex-direction: column;
-  }
-  .calendar-wrapper {
-    flex-direction: column;
-  }
-  .calendar-nav-btn {
-    display: none; /* На мобильных скрываем стрелки или делаем их вертикальными */
-  }
-  .modal-content {
-    padding: 20px;
-  }
-  .modal-footer {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 20px;
-  }
-  .btn-confirm-booking {
-    width: 100%;
-  }
-  .services-small-grid {
-    grid-template-columns: 1fr;
-  }
-  .search-bar {
-    flex-direction: column;
-  }
-  .search-input {
-    width: 100%;
-  }
+  .specs-row { flex-direction: column; }
+  .booking-widget { flex-direction: column; }
+  .modal-content { padding: 20px; }
+  .modal-footer { flex-direction: column; align-items: stretch; gap: 20px; }
+  .btn-confirm-booking { width: 100%; }
+  .services-small-grid { grid-template-columns: 1fr; }
+  .search-bar { flex-direction: column; }
+  .search-input { width: 100%; }
 }
 
-/* Увеличенный логотип в футере */
-.footer-logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 16px;
-}
-
-.footer-logo img.footer-logo-img {
-  width: 120px;
-  height: auto;
-}
-
-.footer-logo span.footer-logo-text {
-  font-size: 32px;
-  font-family: 'Etude Noire', serif;
-  color: #F7F0E6;
-}
+/* Логотип футера */
+.footer-logo { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.footer-logo img.footer-logo-img { width: 120px; height: auto; }
+.footer-logo span.footer-logo-text { font-size: 32px; font-family: 'Etude Noire', serif; color: #F7F0E6; }

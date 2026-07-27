@@ -50,7 +50,6 @@ document.addEventListener('DOMContentLoaded', function () {
   const guestsSpan = document.querySelector('.total-price .details span:last-child');
   const confirmBtn = document.getElementById('confirmBookingBtn');
 
-  // Кнопки навигации календаря
   const navLeft = document.querySelector('.calendar-nav-btn.prev');
   const navRight = document.querySelector('.calendar-nav-btn.next');
 
@@ -62,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
   let currentYear = new Date().getFullYear();
   let currentMonth = new Date().getMonth();
 
-  // --- Генерация календаря ---
+  // --- Генерация одного календаря ---
   function generateCalendar(container, year, month) {
     if (!container) return;
     const months = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
@@ -71,15 +70,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
     container.innerHTML = '';
 
-    // Заголовок (чистый текст без стрелок)
     const header = document.createElement('div');
     header.className = 'calendar-header';
-    header.textContent = `${months[month]} ${year}`;
+    const monthTitle = document.createElement('span');
+    monthTitle.textContent = `${months[month]} ${year}`;
+    header.appendChild(monthTitle);
     container.appendChild(header);
 
-    // Сетка дней недели
     const grid = document.createElement('div');
     grid.className = 'calendar-grid';
+    
     daysOfWeek.forEach(day => {
       const dayName = document.createElement('div');
       dayName.className = 'calendar-day-name';
@@ -93,6 +93,12 @@ document.addEventListener('DOMContentLoaded', function () {
     for (let i = 0; i < offset; i++) {
       const empty = document.createElement('div');
       empty.className = 'calendar-day muted';
+      const content = document.createElement('div');
+      content.className = 'content';
+      const data = document.createElement('span');
+      data.className = 'data';
+      content.appendChild(data);
+      empty.appendChild(content);
       grid.appendChild(empty);
     }
 
@@ -100,16 +106,29 @@ document.addEventListener('DOMContentLoaded', function () {
     for (let d = 1; d <= daysInMonth; d++) {
       const dayEl = document.createElement('div');
       dayEl.className = 'calendar-day';
-      dayEl.textContent = d;
+      const content = document.createElement('div');
+      content.className = 'content';
+      const data = document.createElement('span');
+      data.className = 'data';
+      data.textContent = d;
+      content.appendChild(data);
+      dayEl.appendChild(content);
+      
+      // ================= ИСПРАВЛЕНИЕ =================
+      // Генерируем локальную дату БЕЗ toISOString() и смещения часовых поясов
       const date = new Date(year, month, d);
-      dayEl.dataset.date = date.toISOString().split('T')[0];
+      const y = date.getFullYear();
+      const m = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      dayEl.dataset.date = `${y}-${m}-${day}`;
+      // ==============================================
+      
       grid.appendChild(dayEl);
     }
 
     container.appendChild(grid);
   }
 
-  // --- Отрисовка двух календарей ---
   function renderCalendars() {
     generateCalendar(calendar1, currentYear, currentMonth);
     generateCalendar(calendar2, currentYear, currentMonth + 1);
@@ -118,26 +137,18 @@ document.addEventListener('DOMContentLoaded', function () {
     markToday();
   }
 
-  // --- Навигация по стрелкам ---
   navLeft.addEventListener('click', function() {
     currentMonth--;
-    if (currentMonth < 0) {
-      currentMonth = 11;
-      currentYear--;
-    }
+    if (currentMonth < 0) { currentMonth = 11; currentYear--; }
     renderCalendars();
   });
 
   navRight.addEventListener('click', function() {
     currentMonth++;
-    if (currentMonth > 11) {
-      currentMonth = 0;
-      currentYear++;
-    }
+    if (currentMonth > 11) { currentMonth = 0; currentYear++; }
     renderCalendars();
   });
 
-  // --- События кликов на даты ---
   function attachDateListeners() {
     document.querySelectorAll('.calendar-day:not(.muted)').forEach(day => {
       day.removeEventListener('click', dateClickHandler);
@@ -149,6 +160,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const dayEl = e.currentTarget;
     const dateStr = dayEl.dataset.date;
     if (!dateStr) return;
+    // Теперь строка всегда локальная, поэтому создаём локальную дату через T00:00:00
     const date = new Date(dateStr + 'T00:00:00');
 
     if (!selectedDates.checkIn) {
@@ -158,7 +170,7 @@ document.addEventListener('DOMContentLoaded', function () {
     } else if (!selectedDates.checkOut) {
       if (date > selectedDates.checkIn) {
         selectedDates.checkOut = date;
-        highlightRange(selectedDates.checkIn, selectedDates.checkOut);
+        applySelection();
       } else {
         selectedDates.checkIn = date;
         selectedDates.checkOut = null;
@@ -176,44 +188,58 @@ document.addEventListener('DOMContentLoaded', function () {
     updateDateDisplay();
   }
 
-  // --- Выделение ---
   function clearSelection() {
-    document.querySelectorAll('.calendar-day.active, .calendar-day.range').forEach(el => {
-      el.classList.remove('active', 'range');
-    });
-  }
-
-  function highlightRange(start, end) {
-    const dayElements = document.querySelectorAll('.calendar-day:not(.muted)');
-    dayElements.forEach(el => {
-      const d = new Date(el.dataset.date + 'T00:00:00');
-      if (d.getTime() === start.getTime() || d.getTime() === end.getTime()) {
-        el.classList.add('active'); // Круг
-      } else if (d > start && d < end) {
-        el.classList.add('range'); // Прямоугольник
-      }
+    document.querySelectorAll('.calendar-day.active, .calendar-day.range-start, .calendar-day.range-inner, .calendar-day.range-end').forEach(el => {
+      el.classList.remove('active', 'range-start', 'range-inner', 'range-end');
     });
   }
 
   function applySelection() {
-    if (selectedDates.checkIn) {
-      const startEl = findDayElement(selectedDates.checkIn);
-      if (startEl) startEl.classList.add('active');
+    clearSelection();
+    if (!selectedDates.checkIn) return;
+    
+    const start = selectedDates.checkIn;
+    const end = selectedDates.checkOut;
+    
+    if (!end) {
+      const el = findDayElement(start);
+      if (el) el.classList.add('active');
+      return;
     }
-    if (selectedDates.checkOut) {
-      const endEl = findDayElement(selectedDates.checkOut);
-      if (endEl) endEl.classList.add('active');
-      if (selectedDates.checkIn && selectedDates.checkOut) {
-        highlightRange(selectedDates.checkIn, selectedDates.checkOut);
+    
+    let current = new Date(start);
+    const days = [];
+    while (current <= end) {
+      days.push(new Date(current));
+      current.setDate(current.getDate() + 1);
+    }
+    
+    days.forEach((d, index) => {
+      const el = findDayElement(d);
+      if (!el) return;
+      
+      if (index === 0 && index === days.length - 1) {
+        el.classList.add('active');
+      } else if (index === 0) {
+        el.classList.add('range-start');
+        el.classList.add('active');
+      } else if (index === days.length - 1) {
+        el.classList.add('range-end');
+        el.classList.add('active');
+      } else {
+        el.classList.add('range-inner');
       }
-    }
+    });
   }
 
-  // --- Красная точка "Сегодня" ---
   function markToday() {
     const today = new Date();
     today.setHours(0,0,0,0);
-    const dateStr = today.toISOString().split('T')[0];
+    // Генерируем локальный ключ для поиска
+    const y = today.getFullYear();
+    const m = String(today.getMonth() + 1).padStart(2, '0');
+    const d = String(today.getDate()).padStart(2, '0');
+    const dateStr = `${y}-${m}-${d}`;
     const el = document.querySelector(`.calendar-day[data-date="${dateStr}"]`);
     if (el) {
       el.classList.add('today');
@@ -221,11 +247,13 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function findDayElement(date) {
-    const dateStr = date.toISOString().split('T')[0];
+    const y = date.getFullYear();
+    const m = String(date.getMonth() + 1).padStart(2, '0');
+    const d = String(date.getDate()).padStart(2, '0');
+    const dateStr = `${y}-${m}-${d}`;
     return document.querySelector(`.calendar-day[data-date="${dateStr}"]`);
   }
 
-  // --- Обновление UI ---
   function updateDateDisplay() {
     if (selectedDates.checkIn) {
       const d = selectedDates.checkIn;
@@ -270,7 +298,6 @@ document.addEventListener('DOMContentLoaded', function () {
     priceEl.textContent = totalPrice > 0 ? `${totalPrice.toLocaleString()} ₽` : '0 ₽';
   }
 
-  // --- Сброс и открытие ---
   function resetBookingState() {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
@@ -319,7 +346,6 @@ document.addEventListener('DOMContentLoaded', function () {
     if (e.target === modal) closeModal();
   });
 
-  // --- Кнопки открытия ---
   document.querySelectorAll('.btn-book-house').forEach(btn => {
     btn.addEventListener('click', function (e) {
       e.preventDefault();
@@ -344,7 +370,6 @@ document.addEventListener('DOMContentLoaded', function () {
     openModal(1);
   });
 
-  // --- Счётчики гостей ---
   document.querySelectorAll('.counter-btn').forEach(btn => {
     btn.addEventListener('click', function () {
       const targetId = this.dataset.target;
@@ -358,7 +383,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // --- Подтверждение брони ---
   confirmBtn.addEventListener('click', function () {
     const adults = adultsCount.textContent;
     const children = childrenCount.textContent;
