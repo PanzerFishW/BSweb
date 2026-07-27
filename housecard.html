@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Карточка дома</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #1a1a1a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Основная карточка */
+        .card {
+            position: relative;
+            width: 600px;
+            height: 480px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            
+            /* Замените URL на свое изображение */
+            background-image: url('https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Затемнение снизу */
+        .card::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 70%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0) 80%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Бейдж с ценой (сдвинут влево) */
+        .badge-wrapper {
+            position: absolute;
+            top: 0;
+            /* Сдвигаем влево ровно на половину ширины бейджа (94px / 2 = 47px) */
+            right: 47px; 
+            width: 94px;
+            height: 128px;
+            z-index: 2;
+        }
+        
+        .badge-text {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            padding-top: 14px;
+            color: #ffffff;
+            text-align: center;
+        }
+        .badge-text .small-text {
+            font-size: 11px;
+            font-weight: 400;
+            margin-bottom: 1px;
+        }
+        .badge-text .price {
+            font-size: 23px;
+            font-weight: 700;
+            line-height: 1;
+        }
+        .badge-text .price span {
+            font-size: 18px;
+        }
+        .badge-text .per-night {
+            font-size: 11px;
+            font-weight: 400;
+            margin-top: 2px;
+        }
+
+        /* Контент (текст + кнопки) */
+        .content-wrapper {
+            position: absolute;
+            bottom: 90px;
+            left: 0;
+            width: 100%;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            z-index: 2;
+        }
+
+        .text-content {
+            max-width: 60%;
+        }
+        .text-content h2 {
+            color: #ffffff;
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        .text-content p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 15px;
+            font-weight: 400;
+        }
+
+        .controls {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 15px;
+        }
+
+        /* Кнопка Подробнее */
+        .btn-more {
+            background: transparent;
+            border: 1px solid #ffffff;
+            color: #ffffff;
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 400;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        .btn-more:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Точки слайдера */
+        .dots {
+            display: flex;
+            gap: 8px;
+            margin-top: 5px;
+        }
+        .dot {
+            width: 8px;
+            height: 8px;
+            background-color: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            display: block;
+        }
+        .dot.active {
+            background-color: #ffffff;
+            width: 9px;
+            height: 9px;
+        }
+
+        /* Кнопка Забронировать (прилипшая к низу) */
+        .btn-book {
+            position: absolute;
+            bottom: 20px;
+            left: 24px;
+            right: 24px;
+            width: calc(100% - 48px);
+            background-color: #9f976d;
+            color: #ffffff;
+            border: none;
+            padding: 16px 0;
+            border-radius: 40px;
+            font-size: 18px;
+            font-weight: 500;
+            cursor: pointer;
+            z-index: 2;
+            text-align: center;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        .btn-book:hover {
+            background-color: #8a8360;
+        }
+
+        /* Адаптивность для мобильных */
+        @media (max-width: 600px) {
+            .card {
+                width: 100%;
+                height: 420px;
+            }
+            .text-content h2 {
+                font-size: 20px;
+            }
+            .text-content p {
+                font-size: 13px;
+            }
+            .badge-wrapper {
+                width: 80px;
+                height: 110px;
+                /* Сдвигаем на половину новой ширины (80px / 2 = 40px) */
+                right: 40px; 
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        
+        <!-- Обновленный бейдж с вашим SVG -->
+        <div class="badge-wrapper">
+            <svg width="100%" height="100%" viewBox="0 0 94 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M94 128H93.7656L47 101L0.234375 128H0V0H94V128Z" fill="#9B5026"/>
+            </svg>
+            <div class="badge-text">
+                <span class="small-text">ОТ</span>
+                <span class="price">6 000 <span>₽</span></span>
+                <span class="per-night">за ночь</span>
+            </div>
+        </div>
+
+        <!-- Нижний контент -->
+        <div class="content-wrapper">
+            <div class="text-content">
+                <h2>Второй домик</h2>
+                <p>4 спальных места + камин</p>
+            </div>
+            
+            <div class="controls">
+                <button class="btn-more">Подробнее</button>
+                <div class="dots">
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Кнопка бронирования -->
+        <button class="btn-book">Забронировать</button>
+    </div>
+
+</body>
+</html>

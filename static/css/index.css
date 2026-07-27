@@ -156,7 +156,7 @@ h1,h2,h3,h4,h5,h6,.logo-text,.hero-title,.about-title,.section-title,.quote-mark
 .footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
 .footer-col ul li a{text-decoration:none;color:var(--text-dark);font-size:18px}
 .footer-logo{display:flex;align-items:flex-end;gap:16px;margin-bottom:24px;font-size:28px;color:var(--gold)}
-.footer-logo img{width:50px;height:50px;flex-shrink:0}
+.footer-logo img{width:80px;height:80px;flex-shrink:0}
 .footer-contacts{display:flex;flex-direction:column;gap:14px;margin-bottom:24px}
 .footer-contacts div{font-family:'Montserrat',sans-serif;font-size:18px;color:var(--text-dark)}
 .footer-socials{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px}

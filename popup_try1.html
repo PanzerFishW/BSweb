@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Онлайн-бронирование</title>
+    <!-- Подключение иконок FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Сброс стилей */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background: #dcd7d0; /* Задний фон страницы (имитация темного окружения для попапа) */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Стили попапа */
+        .popup {
+            max-width: 980px;
+            width: 100%;
+            background-color: #fdfbf9; /* Основной кремовый фон */
+            border-radius: 24px;
+            padding: 30px 35px 40px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Кнопка закрытия */
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: #eae4db;
+            border: none;
+            color: #888;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.2s;
+        }
+        .close-btn:hover { background-color: #dcd5ca; }
+
+        /* Заголовки */
+        h1 {
+            text-align: center;
+            font-size: 32px;
+            font-weight: 600;
+            color: #5c5343;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            font-size: 14px;
+            color: #767166;
+            margin-bottom: 25px;
+            line-height: 1.5;
+            padding: 0 20px;
+        }
+
+        /* Верхняя строка с информацией */
+        .summary-bar {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .summary-item {
+            flex: 1;
+            background-color: #eae4db;
+            padding: 12px 15px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: #4a453b;
+            font-size: 15px;
+            font-weight: 400;
+        }
+        .summary-item i {
+            color: #5a5242;
+            font-size: 16px;
+        }
+
+        /* Панель навигации */
+        .action-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 5px;
+        }
+        .action-btn {
+            background-color: #eae4db;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 8px;
+            color: #a15b38;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: 0.2s;
+        }
+        .action-btn:hover { background-color: #dcd5ca; }
+        .action-title {
+            font-size: 18px;
+            color: #3d3a30;
+            font-weight: 500;
+        }
+
+        /* Основной контент (разделение на две колонки) */
+        .main-content {
+            display: flex;
+            gap: 30px;
+        }
+
+        /* КОЛОНКА С УСЛУГАМИ (Левая) */
+        .services-column {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .service-card {
+            display: flex;
+            background: white;
+            border-radius: 16px;
+            padding: 12px;
+            gap: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+
+        .service-card img {
+            width: 130px;
+            height: 130px;
+            object-fit: cover;
+            border-radius: 12px;
+            flex-shrink: 0;
+        }
+
+        .service-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex: 1;
+        }
+
+        .service-info h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #3d3a30;
+        }
+
+        .service-info p {
+            font-size: 13px;
+            color: #6b6456;
+            line-height: 1.4;
+            margin: 4px 0;
+        }
+
+        .service-info p a {
+            color: #a15b38;
+            text-decoration: none;
+        }
+
+        .service-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-top: 4px;
+        }
+
+        .service-qty {
+            font-size: 14px;
+            color: #4a453b;
+        }
+
+        .service-price {
+            font-size: 16px;
+            font-weight: 500;
+            color: #3d3a30;
+        }
+
+        .add-btn {
+            background-color: #a15b38;
+            color: white;
+            border: none;
+            padding: 8px 24px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .add-btn:hover { background-color: #894b2d; }
+
+
+        /* КОЛОНКА БРОНИРОВАНИЯ (Правая) */
+        .booking-column {
+            flex: 1.1;
+            min-width: 260px;
+            background-color: #fdfbf9;
+            border-radius: 16px;
+            padding: 10px 15px;
+        }
+
+        .booking-column h3 {
+            text-align: center;
+            font-size: 20px;
+            font-weight: 600;
+            color: #5c5343;
+            border-top: 1px dotted #d0c9bc;
+            border-bottom: 1px dotted #d0c9bc;
+            padding: 12px 0;
+            margin-bottom: 16px;
+        }
+
+        .booking-pill {
+            background-color: #fceadd;
+            padding: 10px 16px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            color: #4a453b;
+        }
+        .booking-pill i { color: #4a453b; font-size: 14px; }
+
+        .booking-divider {
+            border-top: 1px dotted #d0c9bc;
+            margin: 16px 0;
+        }
+
+        .services-header-pill {
+            background-color: #fceadd;
+            padding: 6px 16px;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #4a453b;
+            margin-bottom: 8px;
+        }
+
+        .booking-service-item {
+            padding: 4px 0 4px 10px;
+            font-size: 14px;
+            color: #4a453b;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 18px;
+            font-weight: 500;
+            color: #3d3a30;
+            margin-top: 8px;
+        }
+
+        .total-subtext {
+            font-size: 12px;
+            color: #a09b90;
+            margin-bottom: 20px;
+            margin-top: 2px;
+        }
+
+        .confirm-btn {
+            width: 100%;
+            background-color: #a15b38;
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .confirm-btn:hover { background-color: #894b2d; }
+
+
+        /* Адаптивность для маленьких экранов */
+        @media (max-width: 768px) {
+            .popup { padding: 20px; }
+            .summary-bar { flex-direction: column; gap: 10px; }
+            .main-content { flex-direction: column; }
+            .service-card { flex-direction: column; align-items: center; text-align: center; }
+            .service-card img { width: 100%; height: 200px; }
+            .service-bottom { flex-direction: column; gap: 10px; align-items: center; }
+            .action-bar .action-title { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="popup">
+        <button class="close-btn"><i class="fa-solid fa-xmark"></i></button>
+        
+        <h1>Онлайн-бронирование</h1>
+        <p class="subtitle">С помощью приведенной ниже формы вы можете забронировать наши номера<br>в режиме онлайн и получить гарантированную бронь.</p>
+
+        <!-- Верхняя строка с данными -->
+        <div class="summary-bar">
+            <div class="summary-item"><i class="fa-solid fa-house"></i> Первый домик</div>
+            <div class="summary-item"><i class="fa-regular fa-calendar-days"></i> 4 мая &mdash; 6 мая</div>
+            <div class="summary-item"><i class="fa-regular fa-user"></i> 3 гостя</div>
+        </div>
+
+        <!-- Панель действий -->
+        <div class="action-bar">
+            <button class="action-btn"><i class="fa-solid fa-chevron-left"></i> К предыдущему шагу</button>
+            <span class="action-title">Закажите услуги</span>
+            <button class="action-btn">Продолжить бронирование <i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+
+        <!-- Основной контент -->
+        <div class="main-content">
+            
+            <!-- Левая колонка: Услуги -->
+            <div class="services-column">
+                <!-- Карточка 1 -->
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1510812431401-94d4018d67a8?w=400&auto=format&fit=crop&q=60" alt="Уголь">
+                    <div class="service-info">
+                        <div>
+                            <h3>Уголь</h3>
+                            <p>У нас можно заказать уголь для ваших самых вкусных блюд на мангале. <br> 10 кг &mdash; 850₽, 5 кг &mdash; 600₽, 3 кг &mdash; 400₽</p>
+                        </div>
+                        <div class="service-bottom">
+                            <span class="service-qty">3 кг</span>
+                            <span class="service-price">400 ₽</span>
+                            <button class="add-btn">Добавить</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Карточка 2 -->
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1534237714274-269318b47d0e?w=400&auto=format&fit=crop&q=60" alt="Русская баня">
+                    <div class="service-info">
+                        <div>
+                            <h3>Русская баня</h3>
+                            <p>Описание бани, расценок и услуг:<br>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore... <a href="#">подробнее</a></p>
+                        </div>
+                        <div class="service-bottom">
+                            <span class="service-qty">от 3-х часов</span>
+                            <span class="service-price">1 500 ₽</span>
+                            <button class="add-btn">Добавить</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Карточка 3 -->
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1534237714274-269318b47d0e?w=400&auto=format&fit=crop&q=60" alt="Русская баня">
+                    <div class="service-info">
+                        <div>
+                            <h3>Русская баня</h3>
+                            <p>Описание бани, расценок и услуг:<br>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <a href="#">подробнее</a></p>
+                        </div>
+                        <div class="service-bottom">
+                            <span class="service-qty">от 3-х часов</span>
+                            <span class="service-price">1 500 ₽</span>
+                            <button class="add-btn">Добавить</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Карточка 4 -->
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1515675688380-6109086c58dc?w=400&auto=format&fit=crop&q=60" alt="Большая беседка">
+                    <div class="service-info">
+                        <div>
+                            <h3>Большая беседка</h3>
+                            <p>Эта беседка - хранитель воспоминаний о самых ярких мероприятиях и памятных событиях. Идеальное решение для проведения мероприятий и ужинов в большой компании.</p>
+                        </div>
+                        <div class="service-bottom">
+                            <span class="service-qty">1 час</span>
+                            <span class="service-price">3 000 ₽</span>
+                            <button class="add-btn">Добавить</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Правая колонка: Итоги -->
+            <div class="booking-column">
+                <h3>Ваше бронирование</h3>
+
+                <div class="booking-pill"><i class="fa-regular fa-clock"></i> 2 ночи</div>
+                <div class="booking-pill"><i class="fa-regular fa-calendar-days"></i> 4 мая &mdash; 6 мая</div>
+                <div class="booking-pill"><i class="fa-regular fa-user"></i> 3 гостя</div>
+                <div class="booking-pill"><i class="fa-regular fa-user"></i> 2 взрослых</div>
+                <div class="booking-pill"><i class="fa-solid fa-paw"></i> 1 питомец</div>
+
+                <div class="booking-divider"></div>
+
+                <div class="services-header-pill"><i class="fa-solid fa-cube"></i> Услуги</div>
+                <div class="booking-service-item">1 мешок угля</div>
+
+                <div class="booking-divider"></div>
+
+                <div class="total-row">
+                    <span>Итого:</span>
+                    <span>8 400 ₽</span>
+                </div>
+                <div class="total-subtext">оплата полной суммы при заезде</div>
+
+                <button class="confirm-btn">Продолжить</button>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
