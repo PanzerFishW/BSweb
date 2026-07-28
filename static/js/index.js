@@ -1,1 +1,42 @@
-document.addEventListener('DOMContentLoaded',function(){const faqItems=document.querySelectorAll('.faq-item');faqItems.forEach(item=>{item.addEventListener('click',function(){this.classList.toggle('active');let answer=this.querySelector('.faq-answer');if(!answer){answer=document.createElement('div');answer.className='faq-answer';const question=this.querySelector('span')?.textContent||'';const answers={'Как добраться до глэмпинга?':'Глэмпинг расположен в Тульской области, в 3 км от усадьбы Поленово. Мы вышлем точные координаты и подробную инструкцию после бронирования. До места можно добраться на автомобиле по трассе М-2 «Крым» (около 2 часов от Москвы).','Какие условия бронирования и отмены?':'При бронировании взимается предоплата 50%. Полный возврат при отмене за 14 дней до заезда, 50% — за 7 дней. При отмене менее чем за 7 дней предоплата не возвращается.','Есть ли завтраки?':'Да, мы предлагаем завтраки из свежих фермерских продуктов. В стоимость проживания включён базовый завтрак. Также можно заказать расширенный завтрак или корзину для пикника.','Можно ли кормить животных глэмпинга?':'Да! У нас есть контактная ферма с козами, курами и кроликами. Можно покормить животных специальным кормом, который мы предоставляем. Приходите в утренние или вечерние часы.','Можно ли с животными?':'Да, мы принимаем гостей с домашними питомцами. Доплата за питомца составляет 1 000 ₽ за весь период проживания. Пожалуйста, укажите питомца при бронировании.','Можно ли арендовать домик на месяц или больше?':'Да, для длительного проживания действуют специальные условия. При бронировании от 7 ночей — скидка 20%, от 14 ночей — 30%. Свяжитесь с нами для обсуждения индивидуальных условий.'};const answerText=answers[question]||'Пожалуйста, свяжитесь с нами для получения подробной информации: +7 (991) 255-08-37';answer.textContent=answerText;this.appendChild(answer);}else{answer.style.display=answer.style.display==='none'?'block':'none';}});});const heroForm=document.querySelector('.hero-form');if(heroForm){const bookingBtn=heroForm.querySelector('.btn-light');if(bookingBtn){bookingBtn.addEventListener('click',function(e){e.preventDefault();const inputs=heroForm.querySelectorAll('.hero-date-input');const checkin=inputs[0]?.value||'не указана';const checkout=inputs[1]?.value||'не указана';const guests=heroForm.querySelector('.hero-guest-select')?.value||'1';let message='Заявка на бронирование:\n';message+=`Дата заезда: ${checkin}\n`;message+=`Дата выезда: ${checkout}\n`;message+=`Гостей: ${guests}\n`;message+=`\nСпасибо! Мы свяжемся с вами для подтверждения.`;alert(message);});}}document.querySelectorAll('a[href^="#"]').forEach(anchor=>{anchor.addEventListener('click',function(e){const targetId=this.getAttribute('href');if(targetId&&targetId!=='#'){const target=document.querySelector(targetId);if(target){e.preventDefault();target.scrollIntoView({behavior:'smooth',block:'start'});}}});});document.querySelectorAll('.btn-book,.btn-book-card,.btn-primary,.btn-gold,.btn-confirm-booking').forEach(btn=>{btn.addEventListener('click',function(e){if(!this.closest('.modal-content')){e.preventDefault();const houseName=this.closest('.house-card')?.querySelector('h3')?.textContent||this.closest('.card')?.querySelector('h3')?.textContent||'';let message='Заявка на бронирование';if(houseName){message+=`: ${houseName}`;}message+='\n\nСпасибо! Мы свяжемся с вами для подтверждения.';alert(message);}});});});
+document.addEventListener('DOMContentLoaded', function() {
+  // Аккордеон FAQ
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(item => {
+    item.addEventListener('click', function() {
+      this.classList.toggle('active');
+      let answer = this.querySelector('.faq-answer');
+      if (!answer) {
+        answer = document.createElement('div');
+        answer.className = 'faq-answer';
+        const question = this.querySelector('span')?.textContent || '';
+        const answers = {
+          'Как добраться до глэмпинга?': 'Глэмпинг расположен в Тульской области, в 3 км от усадьбы Поленово. Мы вышлем точные координаты и подробную инструкцию после бронирования. До места можно добраться на автомобиле по трассе М-2 «Крым» (около 2 часов от Москвы).',
+          'Какие условия бронирования и отмены?': 'При бронировании взимается предоплата 50%. Полный возврат при отмене за 14 дней до заезда, 50% — за 7 дней. При отмене менее чем за 7 дней предоплата не возвращается.',
+          'Есть ли завтраки?': 'Да, мы предлагаем завтраки из свежих фермерских продуктов. В стоимость проживания включён базовый завтрак. Также можно заказать расширенный завтрак или корзину для пикника.',
+          'Можно ли кормить животных глэмпинга?': 'Да! У нас есть контактная ферма с козами, курами и кроликами. Можно покормить животных специальным кормом, который мы предоставляем. Приходите в утренние или вечерние часы.',
+          'Можно ли с животными?': 'Да, мы принимаем гостей с домашними питомцами. Доплата за питомца составляет 1 000 ₽ за весь период проживания. Пожалуйста, укажите питомца при бронировании.',
+          'Можно ли арендовать домик на месяц или больше?': 'Да, для длительного проживания действуют специальные условия. При бронировании от 7 ночей — скидка 20%, от 14 ночей — 30%. Свяжитесь с нами для обсуждения индивидуальных условий.'
+        };
+        const answerText = answers[question] || 'Пожалуйста, свяжитесь с нами для получения подробной информации: +7 (991) 255-08-37';
+        answer.textContent = answerText;
+        this.appendChild(answer);
+      } else {
+        answer.style.display = answer.style.display === 'none' ? 'block' : 'none';
+      }
+    });
+  });
+
+  // Плавный скролл к якорям (если нужен)
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href');
+      if (targetId && targetId !== '#') {
+        const target = document.querySelector(targetId);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
+  });
+});
