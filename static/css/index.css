@@ -138,16 +138,16 @@ h1, h2, h3, h4, h5, h6,
   left: 50%;
   transform: translateX(-50%);
   width: calc(100% - 2.5rem);
-  max-width: 1260px;
+  max-width: 1240px; /* Увеличили ширину хедера */
   background: var(--bg-beige);
   backdrop-filter: blur(10px);
   border-radius: 100px;
-  padding: 1.25rem 2rem;
+  padding: 1rem 1.5rem; /* Немного уменьшили отступы, чтобы вместить всё */
   display: flex;
   justify-content: space-between;
   align-items: center;
   z-index: 10;
-  gap: 1rem;
+  gap: 0.75rem;
   flex-wrap: nowrap;
 }
 
@@ -182,7 +182,7 @@ h1, h2, h3, h4, h5, h6,
 .header nav {
   display: flex;
   align-items: center;
-  gap: 1.875rem;
+  gap: 1.5rem; /* Уменьшили расстояние между ссылками */
   flex: 1;
   justify-content: flex-end;
   flex-wrap: wrap;
