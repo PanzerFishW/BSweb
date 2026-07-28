@@ -138,11 +138,11 @@ h1, h2, h3, h4, h5, h6,
   left: 50%;
   transform: translateX(-50%);
   width: calc(100% - 2.5rem);
-  max-width: 1240px; /* Увеличили ширину хедера */
+  max-width: 1440px;
   background: var(--bg-beige);
   backdrop-filter: blur(10px);
   border-radius: 100px;
-  padding: 1rem 1.5rem; /* Немного уменьшили отступы, чтобы вместить всё */
+  padding: 1rem 1.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -182,7 +182,7 @@ h1, h2, h3, h4, h5, h6,
 .header nav {
   display: flex;
   align-items: center;
-  gap: 1.5rem; /* Уменьшили расстояние между ссылками */
+  gap: 1.5rem;
   flex: 1;
   justify-content: flex-end;
   flex-wrap: wrap;
@@ -346,6 +346,7 @@ h1, h2, h3, h4, h5, h6,
   align-items: stretch;
   width: 100%;
   padding: 0;
+  margin-top: 120px; /* отступ после hero/divider */
 }
 
 .about-image {
@@ -390,6 +391,7 @@ h1, h2, h3, h4, h5, h6,
 .quote {
   padding: 2rem 0;
   width: 100%;
+  margin-top: 120px;
 }
 
 .quote-inner {
@@ -447,6 +449,7 @@ h1, h2, h3, h4, h5, h6,
 .slogan {
   text-align: center;
   padding: 2rem 0 3rem;
+  margin-top: 120px;
 }
 
 .slogan h2 {
@@ -479,6 +482,7 @@ h1, h2, h3, h4, h5, h6,
 /* ==================== Houses ==================== */
 .houses {
   padding: 2rem 0 4rem;
+  margin-top: 120px;
 }
 
 .section-title {
@@ -628,7 +632,7 @@ h1, h2, h3, h4, h5, h6,
 /* ==================== Territory ==================== */
 .territory-wrapper {
   max-width: var(--container-max);
-  margin: 4rem auto 0;
+  margin: 120px auto 0;
   padding: 0 var(--container-padding);
 }
 
@@ -803,7 +807,7 @@ h1, h2, h3, h4, h5, h6,
 .gallery-section {
   position: relative;
   max-width: var(--container-max);
-  margin: 4rem auto 0;
+  margin: 120px auto 0;
   padding: 0 var(--container-padding);
   display: flex;
   flex-wrap: wrap;
@@ -871,6 +875,7 @@ h1, h2, h3, h4, h5, h6,
 /* ==================== Nearby ==================== */
 .nearby {
   padding: 3rem 0;
+  margin-top: 120px;
 }
 
 .nearby-grid {
@@ -961,6 +966,7 @@ h1, h2, h3, h4, h5, h6,
 /* ==================== FAQ ==================== */
 .faq {
   padding: 2rem 0 4rem;
+  margin-top: 120px;
 }
 
 .faq h2 {
@@ -1029,6 +1035,7 @@ h1, h2, h3, h4, h5, h6,
 .footer {
   background: var(--bg-beige);
   padding: 3rem 1rem 2rem;
+  margin-top: 120px;
 }
 
 .footer-inner {
