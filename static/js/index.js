@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // ===== Плавный скролл к якорям (ручной) =====
+  // ===== Плавный скролл к якорям =====
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
       const targetId = this.getAttribute('href');
@@ -24,12 +24,11 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // ===== Анимация появления секций при скролле (Intersection Observer) =====
+  // ===== Анимация появления секций =====
   const observerOptions = {
     threshold: 0.2,
     rootMargin: '0px 0px -50px 0px'
   };
-
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -37,13 +36,12 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   }, observerOptions);
-
   const aboutSection = document.querySelector('.about');
   if (aboutSection) {
     observer.observe(aboutSection);
   }
 
-  // ===== Авто-скролл от hero к about (запускается при первом скролле пользователя) =====
+  // ===== Авто-скролл от hero к about =====
   let autoScrollExecuted = false;
   let scrollBlocked = false;
 
@@ -72,24 +70,18 @@ document.addEventListener('DOMContentLoaded', function() {
   function performAutoScroll() {
     if (autoScrollExecuted) return;
     autoScrollExecuted = true;
-
     const about = document.querySelector('.about');
     if (!about) return;
-
     const aboutTop = about.getBoundingClientRect().top + window.pageYOffset;
     const currentScroll = window.pageYOffset;
     if (currentScroll >= aboutTop - 100) {
       return;
     }
-
     blockScroll();
-
     about.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-    const duration = 2000;
     setTimeout(() => {
       unblockScroll();
-    }, duration);
+    }, 2000);
   }
 
   function firstScrollHandler(e) {
@@ -98,7 +90,6 @@ document.addEventListener('DOMContentLoaded', function() {
     window.removeEventListener('touchmove', firstScrollHandler);
     performAutoScroll();
   }
-
   window.addEventListener('wheel', firstScrollHandler, { passive: true });
   window.addEventListener('touchmove', firstScrollHandler, { passive: true });
 
@@ -164,22 +155,5 @@ document.addEventListener('DOMContentLoaded', function() {
     pawIcon.addEventListener('mouseleave', () => {
       pawIcon.innerHTML = staticSvg;
     });
-  }
-});
-
-// В index.js после инициализации
-document.querySelectorAll('.hero-date-input').forEach(input => {
-  const label = input.parentElement.querySelector('.field-label');
-  if (label) {
-    const toggleLabel = () => {
-      if (input.value) {
-        label.style.opacity = '0';
-      } else {
-        label.style.opacity = '1';
-      }
-    };
-    input.addEventListener('change', toggleLabel);
-    input.addEventListener('input', toggleLabel);
-    toggleLabel(); // начальное состояние
   }
 });
