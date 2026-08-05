@@ -433,6 +433,8 @@ h1, h2, h3, h4, h5, h6,
   align-items: center;
   font-family: 'Montserrat', sans-serif;
 }
+
+
 .house-card .content {
   position: relative;
   z-index: 2;
@@ -455,11 +457,25 @@ h1, h2, h3, h4, h5, h6,
   gap: 4px;
 }
 .house-card .dots { display: flex; gap: 6px; margin-bottom: 6px; }
+.house-card .dots {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  gap: 6px;
+}
 .house-card .dots span {
   width: 8px; height: 8px; border-radius: 50%; background: rgba(255, 255, 255, 0.5);
 }
 .house-card .dots span:first-child { background: white; }
-.house-card .left-col h3 { font-size: 28px; font-weight: 600; margin: 0; color: white; }
+.house-card .left-col h3 {
+  font-family: 'Montserrat', sans-serif; /* изменено */
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: white;
+}
 .house-card .left-col p {
   font-family: 'Montserrat', sans-serif;
   font-size: 16px;
@@ -731,4 +747,258 @@ h1, h2, h3, h4, h5, h6,
   .search-bar { flex-direction: column; }
   .search-input { width: 100%; }
   .footer-socials a { width: 36px; height: 36px; }
+}
+
+/* ===== Footer ===== */
+.footer {
+  background: var(--bg-beige);
+  padding: 3rem 1rem 2rem;
+  margin-top: 120px;
+  padding-top: calc(var(--header-height) + 20px);
+}
+
+.footer-inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+  justify-content: space-between;
+}
+
+.footer-col {
+  flex: 1 1 200px;
+  min-width: 150px;
+}
+
+.footer-col-left {
+  flex: 1 1 240px;
+}
+
+.footer-col h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--gold);
+  margin-bottom: 0.875rem;
+}
+
+.footer-col ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.footer-col ul li a {
+  text-decoration: none;
+  color: var(--text-dark);
+  font-size: 1.125rem;
+}
+
+/* Правовые документы внутри колонки "Размещение" */
+.footer-legal-inline {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  /* разделитель убран */
+}
+
+.footer-legal-inline h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+
+/* Сетка 2×2 для ссылок */
+.footer-legal-inline .legal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.625rem;
+}
+
+.footer-legal-inline .legal-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.footer-legal-inline .legal-col a {
+  text-decoration: none;
+  color: var(--text-dark);
+  font-size: 1.125rem;
+}
+
+/* Логотип и контакты */
+.footer-logo {
+  display: flex;
+  align-items: flex-end;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.75rem;
+  color: var(--gold);
+}
+
+.footer-logo img {
+  width: 80px;
+  height: 80px;
+  flex-shrink: 0;
+}
+
+.footer-contacts {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  margin-bottom: 1.5rem;
+}
+
+.footer-contacts div {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.125rem;
+  color: var(--text-dark);
+}
+
+.footer-socials {
+  display: flex;
+  gap: 0.625rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.footer-socials a {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(73,73,73,0.1);
+  border: 1px solid rgba(73,73,73,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-dark);
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.footer-socials a:hover {
+  background: var(--gold);
+  color: white;
+}
+
+/* Нижняя часть футера (без верхней границы) */
+.footer-bottom {
+  max-width: var(--container-max);
+  margin: 2rem auto 0;
+  /* border-top: 1px solid #ccc;  УБРАН */
+  padding-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.875rem;
+  color: var(--text-dark);
+}
+
+.footer-bottom .legal-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: left;
+}
+
+.footer-bottom .copyright-info {
+  text-align: center;
+}
+
+.footer-bottom .payments {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.footer-bottom .payments img {
+  height: 24px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* ===== Медиа-запросы ===== */
+@media (max-width: 768px) {
+  .footer-legal-inline .legal-grid {
+    grid-template-columns: 1fr; /* на мобильных — одна колонка */
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-col { flex: 1 1 100%; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+  .footer-bottom .legal-info { text-align: center; }
+}
+
+/* Правовые документы внутри колонки "Размещение" */
+.footer-legal-inline {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  /* разделитель убран */
+}
+
+.footer-legal-inline h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+
+.footer-legal-inline .legal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.625rem 2rem;
+}
+
+/* По умолчанию колонки вертикальные */
+.footer-legal-inline .legal-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+/* Правая колонка — горизонтальная */
+.footer-legal-inline .legal-col-horizontal {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.625rem 1.5rem;
+  align-items: center;
+}
+
+/* Запрещаем перенос длинных слов */
+.footer-legal-inline .legal-col a {
+  white-space: nowrap;
+}
+
+/* На мобильных возвращаем вертикаль */
+@media (max-width: 768px) {
+  .footer-legal-inline .legal-grid {
+    grid-template-columns: 1fr;
+  }
+  .footer-legal-inline .legal-col-horizontal {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* Заголовки колонок футера — Montserrat */
+.footer-col h4,
+.footer-legal-inline h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--gold);
+}
+
+/* Отступы можно оставить отдельно */
+.footer-col h4 {
+  margin-bottom: 0.875rem;
+}
+
+.footer-legal-inline h4 {
+  margin-bottom: 0.5rem;
 }

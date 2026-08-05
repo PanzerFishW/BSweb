@@ -1,29 +1,53 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-  // --- Данные домиков ---
+  // --- Данные домиков (добавлено поле galleryImages) ---
   const housesData = {
     1: {
       name: 'Первый домик',
       price: 8000,
       img: 'static/images/houses/house-1.jpg',
+      galleryImages: [
+        'static/images/houses/house-1.jpg',
+        'static/images/houses/house-1.jpg',
+        'static/images/houses/house-1.jpg',
+        'static/images/houses/house-1.jpg'
+      ],
       description: 'Уютный домик‑лофт с собственной сауной и панорамным видом на лес для 2-4 гостей. Идеальное место для семейного отдыха или романтических выходных. Площадь дома 30м² + терраса 24м². Безлимитный Wi‑Fi, оснащенная кухня, отдельная мангальная зона и ротанговая мебель.'
     },
     2: {
       name: 'Второй домик',
       price: 6000,
       img: 'static/images/houses/house-2.png',
+      galleryImages: [
+        'static/images/houses/house-2.png',
+        'static/images/houses/house-2.png',
+        'static/images/houses/house-2.png',
+        'static/images/houses/house-2.png'
+      ],
       description: 'Домик с камином и уютной атмосферой. 4 спальных места, идеально для компании друзей или семьи.'
     },
     3: {
       name: 'Третий домик',
       price: 6000,
       img: 'static/images/houses/house-3.png',
+      galleryImages: [
+        'static/images/houses/house-3.png',
+        'static/images/houses/house-3.png',
+        'static/images/houses/house-3.png',
+        'static/images/houses/house-3.png'
+      ],
       description: 'Просторный дом с панорамными окнами и камином. Разместит до 4 гостей.'
     },
     4: {
       name: 'Четвертый домик',
       price: 6000,
       img: 'static/images/houses/house-4.png',
+      galleryImages: [
+        'static/images/houses/house-4.png',
+        'static/images/houses/house-4.png',
+        'static/images/houses/house-4.png',
+        'static/images/houses/house-4.png'
+      ],
       description: 'Уединённый домик на краю леса с камином и террасой. Идеален для спокойного отдыха.'
     }
   };
@@ -114,14 +138,12 @@ document.addEventListener('DOMContentLoaded', function () {
       content.appendChild(data);
       dayEl.appendChild(content);
       
-      // ================= ИСПРАВЛЕНИЕ =================
       // Генерируем локальную дату БЕЗ toISOString() и смещения часовых поясов
       const date = new Date(year, month, d);
       const y = date.getFullYear();
       const m = String(date.getMonth() + 1).padStart(2, '0');
       const day = String(date.getDate()).padStart(2, '0');
       dayEl.dataset.date = `${y}-${m}-${day}`;
-      // ==============================================
       
       grid.appendChild(dayEl);
     }
@@ -160,7 +182,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const dayEl = e.currentTarget;
     const dateStr = dayEl.dataset.date;
     if (!dateStr) return;
-    // Теперь строка всегда локальная, поэтому создаём локальную дату через T00:00:00
     const date = new Date(dateStr + 'T00:00:00');
 
     if (!selectedDates.checkIn) {
@@ -235,7 +256,6 @@ document.addEventListener('DOMContentLoaded', function () {
   function markToday() {
     const today = new Date();
     today.setHours(0,0,0,0);
-    // Генерируем локальный ключ для поиска
     const y = today.getFullYear();
     const m = String(today.getMonth() + 1).padStart(2, '0');
     const d = String(today.getDate()).padStart(2, '0');
@@ -329,6 +349,25 @@ document.addEventListener('DOMContentLoaded', function () {
     titleEl.textContent = data.name;
     imgMainEl.style.backgroundImage = `url('${data.img}')`;
     descEl.textContent = data.description;
+
+    // Заполняем боковую галерею
+    const galleryItems = document.querySelectorAll('.gallery-side .gallery-item');
+    if (data.galleryImages && data.galleryImages.length === 4) {
+      galleryItems.forEach((item, index) => {
+        item.style.backgroundImage = `url('${data.galleryImages[index]}')`;
+        item.style.backgroundSize = 'cover';
+        item.style.backgroundPosition = 'center';
+        item.innerHTML = ''; // очищаем возможный оверлей
+      });
+    } else {
+      // fallback – используем главное изображение для всех
+      galleryItems.forEach(item => {
+        item.style.backgroundImage = `url('${data.img}')`;
+        item.style.backgroundSize = 'cover';
+        item.style.backgroundPosition = 'center';
+        item.innerHTML = '';
+      });
+    }
 
     resetBookingState();
 
